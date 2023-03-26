@@ -7,10 +7,10 @@ const {ApiError} = require("../error/apiError");
 class CarControl{
     async addCar(req, res, next){
         try {
-            let {name, price, brandId, engineId, speed} = req.body
+            let {name, price, brandId, engineId, acceleration} = req.body
             const {img} = req.files
             let fileName = uuid.v4() + ".jpg"
-            const car = await Car.create({name, price, speed, brandId, engineId, img: fileName})
+            const car = await Car.create({name, price, acceleration, brandId, engineId, img: fileName})
             if (car) {
                 await img.mv(path.resolve(__dirname, '..', 'static', fileName))
             }
@@ -112,10 +112,10 @@ class CarControl{
             await CarInfo.destroy({where:{carId : id}})
             await CarImages.destroy({where:{carId : id}})
             if (check){
-                return res.json({message: `Car named ${name} successfully deleted.`})
+                return res.json({message: `Car with id ${id} successfully deleted.`})
             }
             else{
-                return next(ApiError.badRequest(`There is no car called ${name}.`))
+                return next(ApiError.badRequest(`There is no id ${id} of car.`))
             }
         } catch (e) {
             return next(ApiError.badRequest(e.message))
