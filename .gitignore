@@ -102,8 +102,6 @@ dist
 .pnp
 .pnp.js
 
-# testing
-coverage
 
 /out/
 
@@ -123,6 +121,5 @@ coverage
 .vercel
 
 # typescript
-*.tsbuildinfo
 next-env.d.ts
 .idea
