@@ -1,8 +1,9 @@
 const uuid = require('uuid')
 const path = require('path')
 const { Op } = require('sequelize');
-const {Car, CarImages, CarInfo, Brand} = require('../models/models')
+const {Car, CarImages, CarInfo} = require('../models/models')
 const {ApiError} = require("../error/apiError");
+const fs = require('fs')
 
 class CarControl{
     async addCar(req, res, next){
@@ -14,9 +15,6 @@ class CarControl{
             if (car) {
                 await img.mv(path.resolve(__dirname, '..', 'static', fileName))
             }
-            else{
-                return next(ApiError.badRequest(`Car called ${name} has already exist.`))
-            }
             return res.json(car)
         } catch (e) {
             return next(ApiError.badRequest(e.message))
@@ -25,8 +23,8 @@ class CarControl{
 
     async addInfo(req, res, next){
         try {
-            let {price, horsepower, topspeed, engine, carId} = req.body
-            const carInfo = await CarInfo.create({price, horsepower, topspeed, engine, carId})
+            let {horsepower, topspeed, engine, carId} = req.body
+            const carInfo = await CarInfo.create({horsepower, topspeed, engine, carId})
             return res.json(carInfo)
         } catch (e) {
             return next(ApiError.badRequest(e.message))
@@ -35,21 +33,15 @@ class CarControl{
 
     async addImages(req, res, next){
         try {
-            let res = []
             const {carId} = req.body
-            const {images} = req.files
+            const {img} = req.files
             if (carId) {
-                for (const i of images) {
-                    let fileName = uuid.v4() + ".jpg"
-                    const image = await CarImages.create({carId, img: fileName})
-                    await i.mv(path.resolve(__dirname, '..', 'static', fileName))
-                    res.push(image)
-                }
+                let fileName = uuid.v4() + ".jpg"
+                const image = await CarImages.create({carId, img: fileName})
+                await img.mv(path.resolve(__dirname, '..', 'static', fileName))
+                return res.json(image)
             }
-            else{
-                return next(ApiError.badRequest(`There is no car with id ${carId}`))
-            }
-            return res.json(res)
+
         } catch (e) {
             return next(ApiError.badRequest(e.message))
         }
@@ -57,7 +49,7 @@ class CarControl{
 
     async getCars(req, res, next){
         try {
-            let {brandId, engineId, limit, page, priceMin, priceMax} = req.query
+            let {brandId, engineId, limit, page, pricemin, pricemax} = req.query
             limit = limit || 12
             page = page || 1
             let cars, offset = limit * page - limit
@@ -68,17 +60,16 @@ class CarControl{
             if (engineId) {
                 options.engineId = engineId;
             }
-            if (priceMin || priceMax) {
+            if (pricemin || pricemax) {
                 options.price = {};
-                if (priceMin) {
-                    options.price[Op.gte] = priceMin;
+                if (pricemin) {
+                    options.price[Op.gte] = pricemin;
                 }
-                if (priceMax) {
-                    options.price[Op.lte] = priceMax;
+                if (pricemax) {
+                    options.price[Op.lte] = pricemax;
                 }
             }
             cars = await Car.findAndCountAll({where: options, limit, offset})
-
             return res.json(cars)
         } catch (e){
             return next(ApiError.badRequest(e.message))
@@ -88,35 +79,38 @@ class CarControl{
 
     async getCar(req, res, next){
         try {
-            const fullCar = []
-            const {id} = req.query
-            const car = await Car.findOne( { where: {id} } )
-            if (!car){
-                return next(ApiError.badRequest(`There is no car with id ${carId}`))
-            }
-            const car_info = await CarInfo.findOne ( {where: {carId: id}} )
-            const car_images = await CarImages.findAll( {where: {carId: id}} )
-            fullCar.push(car, car_info, car_images)
-
-            return res.json(fullCar)
+            const {id} = req.params
+            const car = await Car.findOne({
+                where: {id},
+                include: [CarImages, CarInfo]
+            })
+            return res.json(car)
         } catch (e) {
             return next(ApiError.badRequest(e.message))
         }
-
     }
 
     async deleteCar(req, res, next){
         try {
             const {id} = req.body
-            const check = await Car.destroy( { where: {id} } )
-            await CarInfo.destroy({where:{carId : id}})
-            await CarImages.destroy({where:{carId : id}})
-            if (check){
-                return res.json({message: `Car with id ${id} successfully deleted.`})
+            const car = await Car.findOne({
+                where: {id},
+                include: [CarImages, CarInfo]
+            })
+            if (!car){
+                return next(ApiError.badRequest(`There is no car with id ${id}.`))
             }
-            else{
-                return next(ApiError.badRequest(`There is no id ${id} of car.`))
+            fs.unlink(`${__dirname}/../static/${car.dataValues.img}`, err => {
+                console.error(err)
+            })
+            for (let el of car.dataValues.car_images) {
+                await fs.unlink(`${__dirname}/../static/${el.dataValues.img}`, err => {
+                    if (err)
+                        console.error(err)
+                })
             }
+            await Car.destroy( {where: {id}})
+            return res.json({message: `Car with id ${id} successfully deleted.`})
         } catch (e) {
             return next(ApiError.badRequest(e.message))
         }

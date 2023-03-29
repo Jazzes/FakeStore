@@ -6,23 +6,23 @@ const User = sequelize.define('user', {
     email: {type: DataTypes.STRING, unique: true},
     password: {type: DataTypes.STRING},
     role: {type: DataTypes.STRING, defaultValue: "USER"}
-}, {freezeTableName: true, timestamps: false})
+}, )
 
 const Basket = sequelize.define('basket', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
-}, {freezeTableName: true, timestamps: false})
+}, )
 
 const BasketCar = sequelize.define('basket_car', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
-}, {freezeTableName: true, timestamps: false})
+}, {timestamps: false})
 
 const Compare = sequelize.define('compare', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
-}, {freezeTableName: true, timestamps: false})
+}, )
 
 const CompareCar = sequelize.define('compare_car', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
-}, {freezeTableName: true, timestamps: false})
+}, {timestamps: false})
 
 const Car = sequelize.define('car', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
@@ -30,33 +30,33 @@ const Car = sequelize.define('car', {
     acceleration: {type: DataTypes.INTEGER, allowNull: false},
     price: {type: DataTypes.INTEGER, allowNull: false},
     img: {type: DataTypes.STRING, allowNull: false},
-}, {freezeTableName: true, timestamps: false})
+}, )
 
 const CarInfo = sequelize.define('car_info', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    price: {type: DataTypes.INTEGER, allowNull: false},
     horsepower: {type: DataTypes.INTEGER, allowNull: false},
     topspeed: {type: DataTypes.INTEGER, allowNull: false},
     engine: {type: DataTypes.STRING, allowNull: false},
-}, {freezeTableName: true, timestamps: false})
+}, )
 
 const CarImages = sequelize.define('car_images', {
     img: {type: DataTypes.STRING, unique: true, allowNull: false},
-}, {freezeTableName: true, timestamps: false})
+}, )
 
 const Engine = sequelize.define('engine', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, unique: true, allowNull: false},
-}, {freezeTableName: true, timestamps: false})
+}, )
 
 const Brand = sequelize.define('brand', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, unique: true, allowNull: false},
-}, {freezeTableName: true, timestamps: false})
+}, )
 
 const EngineBrand = sequelize.define('engine_brand', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
-}, {freezeTableName: true, timestamps: false})
+}, )
+
 
 User.hasOne(Basket)
 Basket.belongsTo(User)
@@ -76,20 +76,26 @@ Car.belongsTo(Engine)
 Brand.hasMany(Car)
 Car.belongsTo(Brand)
 
-Car.hasMany(CarImages)
+Car.hasMany(CarImages, {
+    onDelete: "CASCADE"
+})
 CarImages.belongsTo(Car)
 
-Car.hasMany(BasketCar)
+Car.hasMany(BasketCar, {
+    onDelete: "CASCADE"
+})
 BasketCar.belongsTo(Car)
 
-Car.hasMany(CompareCar)
+Car.hasMany(CompareCar, {onDelete: "CASCADE"})
 CompareCar.belongsTo(Car)
 
-Car.hasOne(CarInfo)
+Car.hasOne(CarInfo, {onDelete: "CASCADE"})
 CarInfo.belongsTo(Car)
 
 Engine.belongsToMany(Brand, {through: EngineBrand})
 Brand.belongsToMany(Engine, {through: EngineBrand})
+
+// sequelize.drop()
 
 module.exports = {
     User, Basket, BasketCar, Brand, Engine, EngineBrand, CarInfo, Car, CarImages, CompareCar, Compare

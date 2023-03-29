@@ -1,46 +1,40 @@
 const axios = require('axios')
 const FormData = require('form-data')
-const {brands, engines, cars} = require('./data')
+const {brandsSetUp, enginesSetUp, carsSetUp, carsImagesSetUp, carsInfoSetUp} = require('./data')
+const fs = require("fs");
 
 const PORT = 3000
 const URL = "http://localhost"
 
-const url_brand = `${URL}:${PORT}/api/brand`
-const url_engine = `${URL}:${PORT}/api/engine`
-const url_car = `${URL}:${PORT}/api/car`
+const urlBrand = `${URL}:${PORT}/api/brand`
+const urlEngine = `${URL}:${PORT}/api/engine`
+const urlCar = `${URL}:${PORT}/api/car`
+const urlCarImage = `${URL}:${PORT}/api/car/image`
+const urlCarInfo = `${URL}:${PORT}/api/car/info`
 
-async function setupBrands(){
-    for (let i of brands){
+async function setupBrandEngine(){
+    for (let i of brandsSetUp){
         try{
-            const resp = await axios.post(url_brand, {
+            await axios.post(urlBrand, {
                 name: i
             },{
                 headers: {'Content-Type': 'multipart/form-data'}
+            }).then().catch(e => {
+                console.log(e.message)
             })
-            if (!resp){
-                console.log("Something goes wrong with brand.")
-            } else {
-                console.log(`${i} successfully added`)
-            }
         } catch (e){
             console.log(e.message)
         }
     }
-}
-
-async function setupEngines(){
-    for (let i of engines){
+    for (let i of enginesSetUp){
         try{
-            const resp = await axios.post(url_engine, {
+            await axios.post(urlEngine, {
                 name: i
             },{
                 headers: {'Content-Type': 'multipart/form-data'}
+            }).then().catch(e => {
+                console.log(e.message)
             })
-            if (!resp){
-                console.log("Something goes wrong with engine.")
-            } else {
-                console.log(`${i} successfully added`)
-            }
         } catch (e){
             console.log(e.message)
         }
@@ -48,31 +42,63 @@ async function setupEngines(){
 }
 
 async function setupCars(){
-    for (let car of cars){
+    for (let car of carsSetUp){
         try{
             const formData = new FormData()
-            formData.append('img', car.img)
+            const imgOfCar = fs.createReadStream(`./carsimages/${car.img}`)
+            formData.append('img', imgOfCar)
             formData.append('name', car.name)
             formData.append('acceleration', car.acceleration)
             formData.append('price', car.price)
             formData.append('brandId', car.brandId)
             formData.append('engineId', car.engineId)
-            const resp = await axios.post(url_car, formData, {
-                headers: formData.getHeaders()
+            await axios.post(urlCar, formData, {
+                headers: {"Content-Type": 'multipart/form-data'}
             }).then().catch(e => {
-                console.log(e)
+                console.log(e.message)
             })
-            if (!resp){
-                console.log("Something goes wrong with car.")
-            } else {
-                console.log(`${car.name} successfully added`)
-            }
         } catch (e){
-            console.log(`${e.message}, ${car}`)
+            console.log(e.message)
         }
     }
 }
 
-setupBrands()
-setupEngines()
-setupCars()
+async function setupImagesInfo(){
+    for (let car of carsImagesSetUp){
+        try{
+            const formData = new FormData()
+            const imgOfCar = fs.createReadStream(`./carsimages/${car.img}`)
+            formData.append('img', imgOfCar)
+            formData.append('carId', car.carId)
+            await axios.post(urlCarImage, formData, {
+                headers: {"Content-Type": 'multipart/form-data'}
+            }).then().catch(e => {
+                console.log(e.message)
+            })
+        } catch (e){
+            console.log(e.message)
+        }
+    }
+    for (let car of carsInfoSetUp){
+        try{
+            await axios.post(urlCarInfo, {
+                carId: car.carId,
+                horsepower: car.horsepower,
+                topspeed: car.topspeed,
+                engine: car.engine,
+            },{
+                headers: {'Content-Type': 'multipart/form-data'}
+            }).then().catch(e => {
+                console.log(e.message)
+            })
+        } catch (e){
+            console.log(e.message)
+        }
+    }
+}
+
+setupBrandEngine().then(()=>{
+    setupCars().then(()=>{
+        setupImagesInfo().then(()=>console.log("All items had successfully added!\nIf you get status code 404, that means any of items have already been added")).catch(e => {e.message})
+    }).catch(e => console.log(e.message))
+}).catch(e => console.log(e.message))

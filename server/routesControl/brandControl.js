@@ -19,13 +19,13 @@ class BrandControl{
 
     async deleteBrand(req, res, next){
         try {
-            const {name} = req.body
-            const check = await Brand.destroy( { where: {name: name} } )
+            const {id} = req.body
+            const check = await Brand.destroy( { where: {id} } )
             if (check){
-                return res.json({message: `Brand named ${name} successfully deleted.`})
+                return res.json({message: `Brand with id ${id} successfully deleted.`})
             }
             else{
-                return next(ApiError.badRequest(`There is no Brand called ${name}.`))
+                return next(ApiError.badRequest(`There is no brand with id ${id}.`))
             }
         } catch (e) {
             return next(ApiError.badRequest(e.message))
