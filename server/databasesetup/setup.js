@@ -97,8 +97,10 @@ async function setupImagesInfo(){
     }
 }
 
+
+
 setupBrandEngine().then(()=>{
     setupCars().then(()=>{
-        setupImagesInfo().then(()=>console.log("All items had successfully added!\nIf you get status code 404, that means any of items have already been added")).catch(e => {e.message})
+        setupImagesInfo().then(()=>console.log("All items had successfully added!\nIf you get status code 404, that means any of items have already been added or something went wrong.")).catch(e => {e.message})
     }).catch(e => console.log(e.message))
 }).catch(e => console.log(e.message))
