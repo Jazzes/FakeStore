@@ -20,7 +20,7 @@ git clone https://github.com/Jazzes/FakeStore.git
    -  DB_HOST
    -  DB_PORT
    -  SECRET_KEY
-   -  SECRET_WORD - word for create an admin user
+   -  SECRET_WORD - word for creating an admin user
 3. Change the settings in `server/databaseSetup/setup.js` for connection to database.
    - URL
    - PORT
