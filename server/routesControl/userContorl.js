@@ -23,7 +23,8 @@ class UserControl{
                     error: validError
                 }))
             }
-            const {email, password, role} = req.body
+            const {email, password, role, secretword} = req.body
+            let user
             if(!password || !email){
                 return next(ApiError.badRequest('Incorrect email or password.'))
             }
@@ -32,7 +33,12 @@ class UserControl{
                 return next(ApiError.badRequest("User with this email already exists."))
             }
             const hashPassword = await bcrypt.hash(password, 5)
-            const user = await User.create({email, role, password: hashPassword})
+            if (secretword === process.env.SECRET_WORD){
+                user = await User.create({email, role, password: hashPassword})
+            }
+            else {
+                user = await User.create({email, role: "", password: hashPassword})
+            }
             const basket = await Basket.create({userId: user.id})
             const compare = await Compare.create({userId: user.id})
 

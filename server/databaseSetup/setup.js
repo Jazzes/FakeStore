@@ -3,22 +3,42 @@ const FormData = require('form-data')
 const {brandsSetUp, enginesSetUp, carsSetUp, carsImagesSetUp, carsInfoSetUp} = require('./data')
 const fs = require("fs");
 
-const PORT = 3000
+const PORT = "3000"
 const URL = "http://localhost"
+const adminUser = {
+    secretWord: "FakeStore",
+    email: "admin@fake.com",
+    password: "12345678"
+}
+
 
 const urlBrand = `${URL}:${PORT}/api/brand`
 const urlEngine = `${URL}:${PORT}/api/engine`
 const urlCar = `${URL}:${PORT}/api/car`
 const urlCarImage = `${URL}:${PORT}/api/car/image`
 const urlCarInfo = `${URL}:${PORT}/api/car/info`
+const urlAdmin = `${URL}:${PORT}/api/user/register`
 
-async function setupBrandEngine(){
+
+
+async function getAdminUser(email, password){
+    return (await axios.post(urlAdmin, {
+        email,
+        password,
+        secretword: `${adminUser.secretWord}`,
+        role: "ADMIN"
+    })).data.token
+}
+
+
+async function setupBrandEngine(token){
     for (let i of brandsSetUp){
         try{
             await axios.post(urlBrand, {
                 name: i
             },{
-                headers: {'Content-Type': 'multipart/form-data'}
+                headers: {'Content-Type': 'multipart/form-data',
+                Authorization: `Bearer ${token}`}
             }).then().catch(e => {
                 console.log(e.message)
             })
@@ -31,7 +51,8 @@ async function setupBrandEngine(){
             await axios.post(urlEngine, {
                 name: i
             },{
-                headers: {'Content-Type': 'multipart/form-data'}
+                headers: {'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${token}`}
             }).then().catch(e => {
                 console.log(e.message)
             })
@@ -41,7 +62,7 @@ async function setupBrandEngine(){
     }
 }
 
-async function setupCars(){
+async function setupCars(token){
     for (let car of carsSetUp){
         try{
             const formData = new FormData()
@@ -53,7 +74,8 @@ async function setupCars(){
             formData.append('brandId', car.brandId)
             formData.append('engineId', car.engineId)
             await axios.post(urlCar, formData, {
-                headers: {"Content-Type": 'multipart/form-data'}
+                headers: {"Content-Type": 'multipart/form-data',
+                    Authorization: `Bearer ${token}`}
             }).then().catch(e => {
                 console.log(e.message)
             })
@@ -63,7 +85,7 @@ async function setupCars(){
     }
 }
 
-async function setupImagesInfo(){
+async function setupImagesInfo(token){
     for (let car of carsImagesSetUp){
         try{
             const formData = new FormData()
@@ -71,7 +93,8 @@ async function setupImagesInfo(){
             formData.append('img', imgOfCar)
             formData.append('carId', car.carId)
             await axios.post(urlCarImage, formData, {
-                headers: {"Content-Type": 'multipart/form-data'}
+                headers: {"Content-Type": 'multipart/form-data',
+                    Authorization: `Bearer ${token}`}
             }).then().catch(e => {
                 console.log(e.message)
             })
@@ -87,7 +110,8 @@ async function setupImagesInfo(){
                 topspeed: car.topspeed,
                 engine: car.engine,
             },{
-                headers: {'Content-Type': 'multipart/form-data'}
+                headers: {'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${token}`}
             }).then().catch(e => {
                 console.log(e.message)
             })
@@ -98,9 +122,12 @@ async function setupImagesInfo(){
 }
 
 
-
-setupBrandEngine().then(()=>{
-    setupCars().then(()=>{
-        setupImagesInfo().then(()=>console.log("All items had successfully added!\nIf you get status code 404, that means any of items have already been added or something went wrong.")).catch(e => {e.message})
+(async ()=>{
+    const token = await getAdminUser(adminUser.email, adminUser.password)
+    setupBrandEngine(token).then(()=>{
+        setupCars(token).then(()=>{
+            setupImagesInfo(token).then(()=>console.log("All items had successfully added!\nIf you get status code 404, that means any of items have already been added or something went wrong.")).catch(e => {e.message})
+        }).catch(e => console.log(e.message))
     }).catch(e => console.log(e.message))
-}).catch(e => console.log(e.message))
+})()
+

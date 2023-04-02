@@ -95,7 +95,6 @@ CarInfo.belongsTo(Car)
 Engine.belongsToMany(Brand, {through: EngineBrand})
 Brand.belongsToMany(Engine, {through: EngineBrand})
 
-// sequelize.drop()
 
 module.exports = {
     User, Basket, BasketCar, Brand, Engine, EngineBrand, CarInfo, Car, CarImages, CompareCar, Compare
