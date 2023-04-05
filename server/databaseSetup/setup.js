@@ -39,7 +39,7 @@ async function setupBrandEngine(token){
             },{
                 headers: {'Content-Type': 'multipart/form-data',
                 Authorization: `Bearer ${token}`}
-            }).then().catch(e => {
+            }).catch(e => {
                 console.log(e.message)
             })
         } catch (e){
@@ -53,7 +53,7 @@ async function setupBrandEngine(token){
             },{
                 headers: {'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${token}`}
-            }).then().catch(e => {
+            }).catch(e => {
                 console.log(e.message)
             })
         } catch (e){
@@ -76,7 +76,7 @@ async function setupCars(token){
             await axios.post(urlCar, formData, {
                 headers: {"Content-Type": 'multipart/form-data',
                     Authorization: `Bearer ${token}`}
-            }).then().catch(e => {
+            }).catch(e => {
                 console.log(e.message)
             })
         } catch (e){
@@ -95,7 +95,7 @@ async function setupImagesInfo(token){
             await axios.post(urlCarImage, formData, {
                 headers: {"Content-Type": 'multipart/form-data',
                     Authorization: `Bearer ${token}`}
-            }).then().catch(e => {
+            }).catch(e => {
                 console.log(e.message)
             })
         } catch (e){
@@ -112,7 +112,7 @@ async function setupImagesInfo(token){
             },{
                 headers: {'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${token}`}
-            }).then().catch(e => {
+            }).catch(e => {
                 console.log(e.message)
             })
         } catch (e){
