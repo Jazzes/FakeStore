@@ -1,12 +1,4 @@
-%flex-between-center {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-%flex-center{
-  display: flex;
-  align-items: center;
-}
+
 %padding-0-30{
   padding: 0 30px;
 }
@@ -20,14 +12,21 @@ $fSizeText: 2rem;
   flex-direction: column;
 }
 .nav{
-  height: 100px;
+  height: 80px;
   width: 100%;
   border-bottom: 1px solid white;
-  @extend %flex-between-center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   @extend %padding-0-30;
 }
 .main{
   flex: 1 1 auto;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .footer{
   height: 60px;
@@ -35,8 +34,9 @@ $fSizeText: 2rem;
   border-top: 1px white solid;
   font-size: $fSizeText;
   @extend %padding-0-30;
-  @extend %flex-center;
-  justify-content: end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 .linkToContact{
   color: white !important;
@@ -44,8 +44,9 @@ $fSizeText: 2rem;
 }
 .linkToContact:hover{
   color: lightgray !important;
-  scale: (1.05);
+  scale: (1.05)
 }
+
 .linkToOfficial{
   margin-left: 30px;
 }
@@ -56,6 +57,99 @@ $fSizeText: 2rem;
   scale: (1.05);
 }
 
+.basketLogo{
+  height: 30px;
+  width: 30px;
+  transition: all .3s ease;
+}
+.basketLogo:hover{
+  scale: (1.05);
+}
+
+.nav__right_side{
+  display: flex;
+}
+
+.burger-menu{
+  cursor: pointer;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin-left: 30px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
+.burger-menu:hover{
+  scale: (1.05)
+}
+
+.burger-menu:after, .burger-menu:before{
+  content: '';
+  height: 2px;
+  width: 80%;
+  background: white;
+  border-radius: 5px;
+  transition: .3s all ease;
+  position: absolute;
+}
+.burger-menu:after{
+  bottom: 4px;
+}
+.burger-menu:before{
+  top: 4px;
+}
+
+.burger-menu{
+  span{
+    width: 80%;
+    height: 2px;
+    background: white;
+    border-radius: 5px;
+    transition: .3s all ease;
+  }
+}
+
+.burger-menu.burger-activated:before{
+  transform: rotate(45deg);
+  top: 14px;
+  width: 100%;
+}
+.burger-menu.burger-activated:after{
+  transform: rotate(-45deg);
+  bottom: 14px;
+  width: 100%;
+}
+.burger-menu.burger-activated{
+  span{
+    scale: (0);
+  }
+}
+
+.background{
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  width: 100vw;
+  background: url("../static/photos/background.jpg") repeat;
+  animation: rotateBackground 30s infinite alternate;
+}
+
+@keyframes rotateBackground {
+  0%{
+    transform: scale(1);
+  }
+  100%{
+    transform: scale(1.2);
+  }
+}
+
+@media screen and (max-width: 756px){
+  .linkToOfficial, .linkToContact{
+    font-size: 1.8rem;
+  }
+}
 
 
 

@@ -3,12 +3,7 @@
   justify-content: space-between;
   align-items: center;
 }
-%white-link{
-  color: white !important;
-}
-%white-link:hover{
-  color: gray;
-}
+
 %flex-center{
   display: flex;
   align-items: center;
@@ -16,40 +11,117 @@
 %padding-0-30{
   padding: 0 30px;
 }
+%white-link{
+  color: white !important;
+  transition: .3s ease all;
+}
+%white-link:hover{
+  color: lightgray !important;
+  scale: (1.05);
+}
 
 $fSizeBigHeader: 6rem;
 $fSizeHeader: 3rem;
 $fSizeText: 2rem;
 $fSizeInscription: 1.5rem;
 
+$fSizeBigHeaderLow: 3rem;
+$fSizeHeaderLow: 2rem;
+$fSizeTextLow: 1.8rem;
+$fSizeInscriptionLow: 1.3rem;
 
-.wrapper {
-  min-height: 100vh;
+.mainpage__container{
+  width: 100%;
+  padding: 0 80px;
+  margin: 40px 0;
+}
+.mainpage__text{
+  font-size: $fSizeBigHeader;
+  font-weight: bold;
+  text-shadow: 4px 4px 5px rgba(255, 255, 255, 0.6);
+  margin-top: 20px;
+}
+
+.mainpage__block{
+  width: 500px;
+  height: 1px;
+  background: white;
+  margin-top: 20px;
+}
+
+.mainpage__description{
+  color: lightgray;
+  font-size: $fSizeText;
+  font-weight: bold;
+  text-shadow: 4px 4px 5px rgba(211, 211, 211, 0.6);
+  margin-top: 20px;
+}
+
+.mainpage__text{
+  animation: storeScale 2s infinite linear alternate;
+  display: block;
+  width: fit-content;
+}
+
+.borderButton{
+  cursor: pointer;
+  border-radius: 50px;
+  border: 1px solid rgb(255, 255, 255, 0.5);
+  padding: 15px 30px;
+  width: fit-content;
+  background: black;
+}
+
+.mainpage__button{
+  font-size: $fSizeText;
+  margin-top: 40px;
+  color: white !important;
+  transition: .3s all ease;
+}
+
+.mainpage__button:hover{
+  color: black !important;
+  background: white;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.4);
+}
+
+.mainpage__button:active{
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(255, 255, 255, 0.4);
+}
+
+.mainpage__wrapper_button{
   display: flex;
+  align-items: center;
   flex-direction: column;
 }
-.nav{
-  height: 100px;
-  width: 100%;
-  border-bottom: 1px solid white;
-  @extend %flex-between-center;
-  @extend %padding-0-30;
-}
-.main{
-  flex: 1 1 auto;
-}
-.footer{
-  height: 80px;
-  width: 100%;
-  border-top: 1px white solid;
-  font-size: $fSizeText;
-  @extend %padding-0-30;
-  @extend %flex-center
-}
-.linkToContact{
-  @extend %white-link;
+
+@keyframes storeScale {
+  0% {
+    transform: scale(1)
+  }
+  100% {
+    transform: scale(1.1)
+  }
 }
 
-
-
-
+@media screen and (max-width: 756px){
+  .mainpage__text{
+    font-size: $fSizeBigHeaderLow;
+  }
+  .mainpage__description{
+    font-size: $fSizeTextLow;
+  }
+  .mainpage__container{
+    padding: 0 30px;
+  }
+  .mainpage__button{
+  }
+  .mainpage__block{
+    width: 130px;
+  }
+  .mainpage__logo{
+    width: 240px;
+  }
+}

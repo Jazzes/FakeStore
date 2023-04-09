@@ -6,3 +6,13 @@ input, button, textarea{font-family: inherit}
 *, *::before, *::after {box-sizing: border-box;}
 a, a:visited, a:hover{text-decoration: none; cursor: pointer}
 h1{font-size: inherit; font-weight: inherit;}
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track{
+    background: #161616;
+}
+::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 20px;
+}
