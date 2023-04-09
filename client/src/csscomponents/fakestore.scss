@@ -1,0 +1,55 @@
+%flex-between-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+%white-link{
+  color: white !important;
+}
+%white-link:hover{
+  color: gray;
+}
+%flex-center{
+  display: flex;
+  align-items: center;
+}
+%padding-0-30{
+  padding: 0 30px;
+}
+
+$fSizeBigHeader: 6rem;
+$fSizeHeader: 3rem;
+$fSizeText: 2rem;
+$fSizeInscription: 1.5rem;
+
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.nav{
+  height: 100px;
+  width: 100%;
+  border-bottom: 1px solid white;
+  @extend %flex-between-center;
+  @extend %padding-0-30;
+}
+.main{
+  flex: 1 1 auto;
+}
+.footer{
+  height: 80px;
+  width: 100%;
+  border-top: 1px white solid;
+  font-size: $fSizeText;
+  @extend %padding-0-30;
+  @extend %flex-center
+}
+.linkToContact{
+  @extend %white-link;
+}
+
+
+
+
