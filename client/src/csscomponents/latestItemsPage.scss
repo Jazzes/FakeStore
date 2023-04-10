@@ -1,0 +1,70 @@
+$fSizeBigHeader: 6rem;
+$fSizeHeader: 3rem;
+$fSizeText: 2rem;
+$fSizeInscription: 1.5rem;
+
+.latestpage__container{
+  width: 100%;
+  padding: 0 30px;
+  margin: 40px 0;
+}
+.latestpage__title{
+  font-size: $fSizeBigHeader;
+  font-weight: bold;
+  text-shadow: 4px 4px 5px rgba(255, 255, 255, 0.6);
+}
+
+.latestpage__naturePhotos{
+  display: flex;
+  margin-top: 20px;
+}
+
+.latestpage__naturePhoto{
+  width: 200px;
+  border-radius: 20px;
+  margin: 0 10px;
+}
+
+.latestpage__block{
+  margin: 10px 0;
+  height: 1px;
+  background: white;
+  width: 400px;
+}
+
+.latestpage__afterTitle{
+  font-size: $fSizeHeader;
+  text-shadow: 4px 4px 5px rgba(255, 255, 255, 0.6);
+}
+
+
+@keyframes natureSlider {
+  0%{
+  }
+  100%{
+
+  }
+}
+
+
+
+@media screen and (max-width: 756px){
+  .latestpage__block{
+    width: 300px;
+  }
+  .latestpage__naturePhoto{
+    width: 150px;
+  }
+}
+
+@media screen and (max-width: 500px){
+  .latestpage__naturePhoto{
+    width: 110px;
+  }
+  .latestpage__block{
+    margin: 10px 0;
+    height: 1px;
+    background: white;
+    width: 160px;
+  }
+}

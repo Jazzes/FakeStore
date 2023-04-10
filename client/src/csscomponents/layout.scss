@@ -1,4 +1,3 @@
-
 %padding-0-30{
   padding: 0 30px;
 }
@@ -40,7 +39,7 @@ $fSizeText: 2rem;
 }
 .linkToContact{
   color: white !important;
-  transition: .3s ease all;
+  transition: .3s ease color;
 }
 .linkToContact:hover{
   color: lightgray !important;
@@ -51,18 +50,26 @@ $fSizeText: 2rem;
   margin-left: 30px;
 }
 .logoImage{
-  transition: .3s ease all;
+  transition: .3s ease scale;
 }
 .logoImage:hover{
   scale: (1.05);
 }
 
-.basketLogo{
-  height: 30px;
-  width: 30px;
-  transition: all .3s ease;
+.findLogo{
+  cursor: pointer;
 }
-.basketLogo:hover{
+
+.basketLogo, .findLogo{
+  transition: scale .3s ease;
+  box-sizing: content-box;
+  padding: 5px;
+  line-height: 0;
+}
+.basketLogo{
+  margin: 0 20px;
+}
+.basketLogo:hover, .findLogo:hover{
   scale: (1.05);
 }
 
@@ -75,11 +82,12 @@ $fSizeText: 2rem;
   position: relative;
   width: 30px;
   height: 30px;
-  margin-left: 30px;
   display: flex;
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
+  box-sizing: content-box;
+  padding: 5px;
 }
 .burger-menu:hover{
   scale: (1.05)
@@ -88,17 +96,17 @@ $fSizeText: 2rem;
 .burger-menu:after, .burger-menu:before{
   content: '';
   height: 2px;
-  width: 80%;
+  width: calc(80% - 8px);
   background: white;
   border-radius: 5px;
-  transition: .3s all ease;
+  transition: .3s transform ease;
   position: absolute;
 }
 .burger-menu:after{
-  bottom: 4px;
+  bottom: 9px;
 }
 .burger-menu:before{
-  top: 4px;
+  top: 9px;
 }
 
 .burger-menu{
@@ -107,19 +115,19 @@ $fSizeText: 2rem;
     height: 2px;
     background: white;
     border-radius: 5px;
-    transition: .3s all ease;
+    transition: .3s scale ease;
   }
 }
 
 .burger-menu.burger-activated:before{
   transform: rotate(45deg);
-  top: 14px;
-  width: 100%;
+  top: 19px;
+  width: 80%;
 }
 .burger-menu.burger-activated:after{
   transform: rotate(-45deg);
-  bottom: 14px;
-  width: 100%;
+  bottom: 19px;
+  width: 80%;
 }
 .burger-menu.burger-activated{
   span{
@@ -145,11 +153,75 @@ $fSizeText: 2rem;
   }
 }
 
-@media screen and (max-width: 756px){
-  .linkToOfficial, .linkToContact{
-    font-size: 1.8rem;
+@media screen and (min-width: 1650px){
+  html{
+    font-size: 20px;
+  }
+  .nav, .footer{
+    height: 120px;
+  }
+  .basketLogoSize, .findLogoSize, .burger-menu{
+    width: 50px;
+    height: 50px;
+  }
+  .basketLogo{
+    margin: 0 50px;
+  }
+  .logoSize{
+    width: 200px;
+  }
+  .burger-menu{
+    span{
+      height: 5px;
+    }
+  }
+  .burger-menu:after, .burger-menu:before{
+    height: 5px;
+  }
+
+  .burger-menu.burger-activated:before{
+    top: 27px;
+    width: 90%;
+  }
+  .burger-menu.burger-activated:after{
+    bottom: 27px;
+    width: 90%;
   }
 }
 
+@media screen and (max-width: 756px){
+  html{
+    font-size: 9px;
+  }
+}
 
-
+@media screen and (max-width: 500px){
+  html{
+    font-size: 7px;
+  }
+  .nav, .footer{
+    padding: 0 20px;
+  }
+  .basketLogo{
+    margin: 0 10px;
+  }
+  .basketLogoSize, .findLogoSize{
+    width: 20px;
+    height: 20px;
+  }
+  .logoSize{
+    width: 100px;
+  }
+  .burger-menu{
+    height: 20px;
+    width: 20px;
+  }
+  .burger-menu.burger-activated:before{
+    top: 14px;
+    width: 70%;
+  }
+  .burger-menu.burger-activated:after{
+    bottom: 14px;
+    width: 70%;
+  }
+}

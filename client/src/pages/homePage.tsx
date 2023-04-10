@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from "../static/photos/FakeInscription.svg"
 import {Link} from "react-router-dom";
+import "../csscomponents/mainPage.scss"
 
 const HomePage = () => {
     return (
@@ -15,7 +16,7 @@ const HomePage = () => {
                     Perfect from beginning to end.
                 </div>
 
-                <div className="mainpage__wrapper_button">
+                <div className="mainpage__wrapperButton">
                     <Link to="/shop" className="borderButton mainpage__button">Shop now</Link>
                     <Link to="/latest" className="borderButton mainpage__button">Latest items</Link>
                 </div>

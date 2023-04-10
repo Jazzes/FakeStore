@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import "../csscomponents/layout.scss"
-import "../csscomponents/fakestore.scss"
 import {Link, Outlet} from 'react-router-dom'
 import logo from "../static/photos/logo.svg"
 import basket from "../static/photos/basket.svg"
+import find from "../static/photos/find.svg"
 
 const Layout = () => {
 
@@ -15,11 +15,14 @@ const Layout = () => {
         <div className="wrapper">
             <div className="nav">
                 <Link to="/" className="logoImage">
-                    <img alt="" src={logo}/>
+                    <img className="logoSize" alt="" src={logo}/>
                 </Link>
                 <div className="nav__right_side">
+                    <div className="findLogo">
+                        <img className="findLogoSize" alt="" src={find}/>
+                    </div>
                     <Link className="basketLogo" to="/basket">
-                        <img alt="" src={basket}/>
+                        <img className="basketLogoSize" alt="" src={basket}/>
                     </Link>
                     <div className={burgerActive} onClick={ () => {setActive(active => !active)} }>
                         <span></span>

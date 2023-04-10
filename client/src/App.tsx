@@ -22,6 +22,7 @@ function App() {
 
                 <Route index element={ <HomePage/> } />
 
+                <Route path="shop" element={ <ShopPage/> } />
                 <Route path="latest" element={ <LatestItemsPage/> } />
 
                 <Route path="car/:id" element={ <ItemCardPage/> } />
@@ -38,9 +39,6 @@ function App() {
                 <Route path="*" element={ <NotFoundPage/> } />
 
             </Route>
-
-            <Route path="/shop" element={ <ShopPage/> } />
-
         </Routes>
     );
 }
