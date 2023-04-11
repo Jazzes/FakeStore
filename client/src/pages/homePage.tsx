@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from "../static/photos/FakeInscription.svg"
 import {Link} from "react-router-dom";
-import "../csscomponents/mainPage.scss"
+import "../csscomponents/homePage.scss"
 
 const HomePage = () => {
     return (

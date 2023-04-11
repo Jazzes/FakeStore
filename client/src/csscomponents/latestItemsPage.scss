@@ -6,7 +6,34 @@ $fSizeInscription: 1.5rem;
 .latestpage__container{
   width: 100%;
   padding: 0 30px;
-  margin: 40px 0;
+}
+.lastpage__fullblock{
+  max-height: 150vh;
+  min-height: 600px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.lastpage__between{
+  height: 1px;
+  width: 100%;
+  background: white;
+}
+.lastpage__elonmusk_photo{
+  width: 45%;
+  border: 10px solid white;
+  border-radius: 50px;
+}
+.lastpage__elonmusk_text{
+  width: 45%;
+  font-size: $fSizeHeader;
+  text-shadow: 4px 4px 5px rgba(255, 255, 255, 0.6);
+}
+.lastpage__positioning{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .latestpage__title{
   font-size: $fSizeBigHeader;
@@ -17,6 +44,7 @@ $fSizeInscription: 1.5rem;
 .latestpage__naturePhotos{
   display: flex;
   margin-top: 20px;
+  animation: natureSlider 10s infinite linear alternate;
 }
 
 .latestpage__naturePhoto{
@@ -37,28 +65,67 @@ $fSizeInscription: 1.5rem;
   text-shadow: 4px 4px 5px rgba(255, 255, 255, 0.6);
 }
 
-
 @keyframes natureSlider {
   0%{
-
+    transform: translateX(-10px);
   }
   100%{
-
+    transform: translateX(calc(-1800px + 100vw));
   }
 }
 
 
+@media screen and (min-width: 1650px){
+  .latestpage__naturePhoto{
+    width: 350px;
+  }
+  @keyframes natureSlider {
+    0%{
+      transform: translateX(-10px);
+    }
+    100%{
+      transform: translateX(calc(-3000px + 100vw));
+    }
+  }
+}
 
 @media screen and (max-width: 756px){
+  .lastpage__elonmusk_photo{
+    width: 70%;
+    margin-bottom: 20px;
+  }
+  .lastpage__elonmusk_text{
+    width: 70%;
+    margin-bottom: 30px;
+    margin-top: 20px;
+  }
+  .lastpage__positioning{
+    flex-direction: column;
+    justify-content: center;
+  }
   .latestpage__block{
     width: 300px;
   }
   .latestpage__naturePhoto{
     width: 150px;
   }
+  @keyframes natureSlider {
+    0%{
+      transform: translateX(-10px);
+    }
+    100%{
+      transform: translateX(calc(-1400px + 100vw));
+    }
+  }
 }
 
 @media screen and (max-width: 500px){
+  .lastpage__elonmusk_photo{
+    width: 100%;
+  }
+  .lastpage__elonmusk_text{
+    width: 100%;
+  }
   .latestpage__naturePhoto{
     width: 110px;
   }
@@ -67,5 +134,13 @@ $fSizeInscription: 1.5rem;
     height: 1px;
     background: white;
     width: 160px;
+  }
+  @keyframes natureSlider {
+    0%{
+      transform: translateX(-10px);
+    }
+    100%{
+      transform: translateX(calc(-1080px + 100vw));
+    }
   }
 }

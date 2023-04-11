@@ -99,7 +99,7 @@ $fSizeText: 2rem;
   width: calc(80% - 8px);
   background: white;
   border-radius: 5px;
-  transition: .3s transform ease;
+  transition: .3s all ease;
   position: absolute;
 }
 .burger-menu:after{
@@ -115,7 +115,7 @@ $fSizeText: 2rem;
     height: 2px;
     background: white;
     border-radius: 5px;
-    transition: .3s scale ease;
+    transition: .3s all ease;
   }
 }
 
@@ -141,7 +141,7 @@ $fSizeText: 2rem;
   height: 100%;
   width: 100vw;
   background: url("../static/photos/background.jpg") repeat;
-  animation: rotateBackground 30s infinite alternate;
+  animation: rotateBackground 20s infinite alternate linear;
 }
 
 @keyframes rotateBackground {

@@ -6,7 +6,11 @@ $fSizeInscription: 1.5rem;
 .mainpage__container{
   width: 100%;
   padding: 0 80px;
-  margin: 40px 0;
+  min-height: 600px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .mainpage__text{
   font-size: $fSizeBigHeader;
@@ -15,8 +19,12 @@ $fSizeInscription: 1.5rem;
   margin-top: 20px;
 }
 
+.mainpage__logo{
+  width: 600px;
+}
+
 .mainpage__block{
-  width: 500px;
+  width: 350px;
   height: 1px;
   background: white;
   margin-top: 20px;
@@ -96,7 +104,7 @@ $fSizeInscription: 1.5rem;
   .mainpage__button{
   }
   .mainpage__block{
-    width: 300px;
+    width: 240px;
   }
   .mainpage__logo{
     width: 400px;
