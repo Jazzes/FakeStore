@@ -9,8 +9,14 @@ import nature6 from "../static/photos/nature6.jpg"
 import nature7 from "../static/photos/nature7.jpg"
 import nature8 from "../static/photos/nature8.jpg"
 import elonmusk from "../static/photos/elonmuskframe.jpg"
+import tesla1 from "../static/photos/teslamodelx1.jpg"
+import tesla2 from "../static/photos/teslamodelx2.jpg"
+import tesla3 from "../static/photos/teslamodelx3.jpg"
+import Slider from "../components/slider";
 
 const LatestItemsPage = () => {
+    // @ts-ignore
+    // @ts-ignore
     return (
         <>
             <div className="latestpage__container">
@@ -35,6 +41,7 @@ const LatestItemsPage = () => {
                         <img className="latestpage__naturePhoto latestpage__nature8" src={nature8} alt="" />
                     </div>
                 </div>
+
                 <div className="lastpage__between"></div>
 
                 <div className="lastpage__fullblock">
@@ -48,7 +55,11 @@ const LatestItemsPage = () => {
                     </div>
                 </div>
 
+                <div className="lastpage__between"></div>
 
+                <div className="lastpage__blockSlider">
+                    <Slider image={[tesla1, tesla2, tesla3]} autoPlay={true} autoPlayTime={5} />
+                </div>
 
             </div>
         </>
