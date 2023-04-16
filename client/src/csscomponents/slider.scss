@@ -54,6 +54,12 @@ $fSizeInscription: 1.5rem;
   border: 2px solid white;
   border-radius: 50px;
   box-sizing: content-box;
+  transition: .3s all ease;
+}
+
+.slider__dot:hover{
+  transform: scale(1.05);
+  border: 2px solid lightgray;
 }
 
 .slider__chosen{

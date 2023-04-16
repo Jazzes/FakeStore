@@ -4,6 +4,7 @@ import {Link, Outlet} from 'react-router-dom'
 import logo from "../static/photos/logo.svg"
 import basket from "../static/photos/basket.svg"
 import find from "../static/photos/find.svg"
+import Navbar from "./navbar";
 
 const Layout = () => {
 
@@ -32,6 +33,7 @@ const Layout = () => {
 
             <div className="main">
                 <div className="background"></div>
+                {active && <Navbar/>}
                 < Outlet />
             </div>
 
