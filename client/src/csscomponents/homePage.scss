@@ -6,11 +6,11 @@ $fSizeInscription: 1.5rem;
 .mainpage__container{
   width: 100%;
   padding: 0 80px;
-  min-height: 600px;
-  height: 100vh;
+  margin: 40px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex: 1 1 auto;
 }
 .mainpage__text{
   font-size: $fSizeBigHeader;

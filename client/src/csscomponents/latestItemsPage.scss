@@ -18,17 +18,17 @@ $fSizeInscription: 1.5rem;
   width: calc(100% - 60px);
   background: white;
 }
-.lastpage__elonmusk_photo{
+.lastpage__block_photo{
   width: 45%;
   border: 10px solid white;
   border-radius: 50px;
 }
-.lastpage__elonmusk_text{
+.lastpage__block_text{
   width: 45%;
   font-size: $fSizeHeader;
   text-shadow: 4px 4px 5px rgba(255, 255, 255, 0.6);
 }
-.lastpage__positioning{
+.lastpage__positioning, .lastpage__positioning_reverse{
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -63,8 +63,8 @@ $fSizeInscription: 1.5rem;
   text-shadow: 4px 4px 5px rgba(255, 255, 255, 0.6);
 }
 
-.lastpage__blockSlider{
-
+.slider{
+  line-height: 0;
 }
 
 @keyframes natureSlider {
@@ -92,15 +92,19 @@ $fSizeInscription: 1.5rem;
 }
 
 @media screen and (max-width: 756px){
-  .lastpage__elonmusk_photo{
+  .lastpage__block_photo{
     width: 100%;
   }
-  .lastpage__elonmusk_text{
+  .lastpage__block_text{
     width: 100%;
     margin-bottom: 30px;
   }
   .lastpage__positioning{
     flex-direction: column;
+    justify-content: center;
+  }
+  .lastpage__positioning_reverse{
+    flex-direction: column-reverse;
     justify-content: center;
   }
   .latestpage__block{

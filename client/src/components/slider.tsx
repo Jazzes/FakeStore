@@ -1,63 +1,55 @@
-import React, {ReactEventHandler, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
+import { LazyLoadImage } from "react-lazy-load-image-component"
 
 interface ISlider{
     autoPlay: boolean,
     autoPlayTime: number,
     image: string[],
+    header: string,
+    title: string,
 }
 
-
 const Slider = (props :ISlider) => {
-    const [items, setItems] = useState([])
-    const [slide, setSlide] = useState(0)
-    const [touchPosition, setTouchPosition] = useState(null)
+    const [slide, setSlide] = useState(0);
 
-    const changeSlide = (direction : number = 1) => {
-        let slideNumber
+    const changeSlide = useCallback( (direction : number) => {
+        setSlide((props.image.length + slide + direction) % props.image.length)
+    },[props.image.length, slide] )
 
-        if (slide + direction < 0) {
-            slideNumber = items.length - 1
-        } else {
-            slideNumber = (slide + direction) % items.length
-        }
+    useEffect(() => {
+        if (!props.autoPlay) return
 
-        setSlide(slideNumber)
-    }
-
-    const goToSlide = (number: number) => {
-        setSlide(number % items.length)
-    }
-
-    const handleTouchStart = (e: any) => {
-        const touchDown = e.touches[0].clientX
-        setTouchPosition(touchDown)
-    }
-
-    const handleTouchMove = (e: any) => {
-        if (touchPosition === null) {
-            return
-        }
-
-        const currentPosition = e.touches[0].clientX
-        const direction = touchPosition - currentPosition
-
-        if (direction > 10) {
+        const interval = setInterval(() => {
             changeSlide(1)
-        }
+        }, props.autoPlayTime)
 
-        if (direction < -10) {
-            changeSlide(-1)
+        return () => {
+            clearInterval(interval)
         }
+    }, [slide, props.autoPlay, props.autoPlayTime, changeSlide])
 
-        setTouchPosition(null)
+    const chosenDot = (num : number) => {
+        if (slide === num){
+            return "slider__dot slider__chosen"
+        }
+        return "slider__dot"
     }
-
-
-
 
 
     return (
-        <div>
+        <div className="slider">
+            <div className="slider__description">
+                <div className="slider__header">{props.header}</div>
+                <div className="slider__title">{props.title}</div>
+            </div>
+            <div className="slider__previousSlide" onClick={()=> changeSlide(-1)}></div>
+            <LazyLoadImage className="slider__image" alt="" src={props.image[slide]} />
+            <div className="slider__nextSlide" onClick={() => changeSlide(1)}></div>
+            <div className="slider__dots">
+                <div onClick={()=> setSlide(0)} style={{padding: '5px'}}><div className={chosenDot(0)}/></div>
+                <div onClick={()=> setSlide(1)} style={{padding: '5px'}}><div className={chosenDot(1)}/></div>
+                <div onClick={()=> setSlide(2)} style={{padding: '5px'}}><div className={chosenDot(2)}/></div>
+            </div>
         </div>
     )
 }
