@@ -6,7 +6,7 @@ const fs = require("fs");
 const PORT = "3000"
 const URL = "http://localhost"
 const adminUser = {
-    secretWord: "FakeStore",
+    secretWord: process.env.SECRET_WORD,
     email: "admin@fake.com",
     password: "12345678"
 }
