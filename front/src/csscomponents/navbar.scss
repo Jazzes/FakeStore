@@ -1,0 +1,60 @@
+@import "default";
+
+.navbar{
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  height: unquote("calc(100vh - 80px)");
+}
+.navbar__relative{
+  height: 450px;
+  width: 100%;
+  position: relative;
+  padding: 30px;
+}
+
+.navbar__icon{
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.navbar__block{
+  display: flex;
+  align-items: center;
+  color: white !important;
+  font-size: $fSizeText;
+  margin-bottom: 30px;
+}
+
+.navbar__account{
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+
+.navbar__text, .navbar__icon, .navbar__account{
+  transition: .3s all ease;
+}
+
+.navbar__icon:hover{
+  transform: scale(1.05)
+}
+
+.navbar__text:hover{
+  color: lightgray !important;
+}
+
+.navbar__account:hover{
+  transform: scale(1.05);
+}
+
+.navbar__beardman_block{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  font-size: $fSizeText;
+  align-items: center;
+  bottom: 30px;
+}

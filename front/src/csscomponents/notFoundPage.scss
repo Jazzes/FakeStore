@@ -1,0 +1,11 @@
+@import "default";
+
+.NotFound{
+  width: 100%;
+  font-size: $fSizeBigHeader;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
