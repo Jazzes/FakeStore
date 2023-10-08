@@ -17,6 +17,7 @@
   width: 20%;
   min-width: 80px;
   top: 0;
+  cursor: pointer;
 }
 
 .slider__previousSlide{
@@ -52,6 +53,7 @@
   border-radius: 50px;
   box-sizing: content-box;
   transition: .3s ease all;
+  cursor: pointer;
 }
 
 .slider__dot:hover{

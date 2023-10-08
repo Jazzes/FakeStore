@@ -17,7 +17,7 @@ const ContactPage = () => {
                     </div>
                     <div className="contactContainer__Connect__Item2">
                         <img src={gmail} className="gmail" alt="" />
-                        <div className="contactContainer__Connect__Text">j4zzes@gmail.com</div>
+                        <a href="mailto:j4zzes@gmail.com" className="contactContainer__Connect__Text">j4zzes@gmail.com</a>
                     </div>
                 </div>
             </div>
