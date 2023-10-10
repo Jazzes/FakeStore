@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import "../csscomponents/layout.scss"
+import "./layout.scss"
 import {Link, Outlet} from 'react-router-dom'
-import logo from "../static/photos/logo.svg"
-import basket from "../static/photos/basket.svg"
-import find from "../static/photos/find.svg"
-import Navbar from "./navbar";
+import logo from "../../static/photos/logo.svg"
+import basket from "../../static/photos/basket.svg"
+import find from "../../static/photos/find.svg"
+import Navbar from "../navbar/navbar";
 
 const Layout = () => {
     const [hideNav, setHideNav] = useState(false)

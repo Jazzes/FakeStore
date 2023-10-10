@@ -1,7 +1,7 @@
 import React from 'react';
-import "../csscomponents/contactPage.scss"
-import lislogo from "../static/photos/lislogo.svg"
-import gmail from "../static/photos/gmail.svg"
+import "./contactPage.scss"
+import lislogo from "../../static/photos/lislogo.svg"
+import gmail from "../../static/photos/gmail.svg"
 
 const ContactPage = () => {
     return (

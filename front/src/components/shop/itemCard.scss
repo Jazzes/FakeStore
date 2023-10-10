@@ -1,0 +1,27 @@
+@import "../../csscomponents/default";
+
+.itemCard__container{
+  width: 32%;
+  height: 290px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.itemCard__image{
+  width: 95%;
+  aspect-ratio: 25/13;
+  border-radius: 10px;
+  box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.50);
+  object-fit: cover;
+  margin-top: 10px;
+}
+
+.itemCard__name{
+  margin-top: 10px;
+  font-size: 2rem;
+  width: 95%;
+  text-align: center;
+}

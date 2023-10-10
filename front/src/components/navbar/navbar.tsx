@@ -1,14 +1,14 @@
 import React from 'react';
-import "../csscomponents/navbar.scss"
+import "./navbar.scss"
 import {Link} from "react-router-dom";
-import accountpage from "../static/photos/account.svg"
-import homepage from "../static/photos/homepage.svg"
-import shoppage from "../static/photos/shoppage.svg"
-import latestitemspage from "../static/photos/latestitempage.svg"
-import basketpage from "../static/photos/basket.svg"
-import comparepage from "../static/photos/compare.svg"
-import contactpage from "../static/photos/contactpage.svg"
-import beardman from "../static/photos/beardman.svg"
+import accountpage from "../../static/photos/account.svg"
+import homepage from "../../static/photos/homepage.svg"
+import shoppage from "../../static/photos/shoppage.svg"
+import latestitemspage from "../../static/photos/latestitempage.svg"
+import basketpage from "../../static/photos/basket.svg"
+import comparepage from "../../static/photos/compare.svg"
+import contactpage from "../../static/photos/contactpage.svg"
+import beardman from "../../static/photos/beardman.svg"
 
 interface INavbar{
     closeNavbar: () => void

@@ -1,10 +1,7 @@
 import React from 'react';
+import "./adminPage.scss"
 
-interface IItemCard{
-
-}
-
-const ItemCard = () => {
+const AdminPage = () => {
     return (
         <div>
 
@@ -12,4 +9,4 @@ const ItemCard = () => {
     );
 };
 
-export default ItemCard;
+export default AdminPage;

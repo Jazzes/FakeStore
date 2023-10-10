@@ -27,7 +27,7 @@ const CompareCar = sequelize.define('compare_car', {
 const Car = sequelize.define('car', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, unique: true, allowNull: false},
-    acceleration: {type: DataTypes.INTEGER, allowNull: false},
+    acceleration: {type: DataTypes.FLOAT, allowNull: false},
     price: {type: DataTypes.INTEGER, allowNull: false},
     img: {type: DataTypes.STRING, allowNull: false},
 }, )
