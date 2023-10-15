@@ -1,13 +1,17 @@
 import React from 'react';
 import {Car} from "../../models/DataBaseModels";
 import "./itemCard.scss"
+import {Link} from "react-router-dom";
+import compare from "../../static/photos/compare.svg"
 
-interface IItemCard{
+interface IItemCard {
     car: Car
+    addToCompare: (id: number) => void
 }
 
-const ItemCard = ({car} : IItemCard) => {
+const ItemCard = ({car, addToCompare}: IItemCard) => {
     const imgUrl = "http://localhost:5005/static/"
+
     return (
         <div className="itemCard__container">
             <img className="itemCard__image" src={imgUrl + car.img} alt=""/>
@@ -15,8 +19,25 @@ const ItemCard = ({car} : IItemCard) => {
                 {car.name}
             </div>
             <div className="itemCard__info">
-
+                <div className="itemCard__info__column_1">
+                    <div className="itemCard__info__char bold">
+                        {car.price.toLocaleString()}$
+                    </div>
+                    <div className="itemCard__info__char">
+                        price
+                    </div>
+                </div>
+                <div className="itemCard__info__column_2">
+                    <div className="itemCard__info__char bold">
+                        {car.acceleration}
+                    </div>
+                    <div className="itemCard__info__char">
+                        0-60 mph
+                    </div>
+                </div>
             </div>
+            <Link to={"/car/" + car.id} className="itemCard__link">Check</Link>
+            <img onClick={() => addToCompare(car.id)} className="itemCard__compare" src={compare} alt=""/>
         </div>
     );
 };

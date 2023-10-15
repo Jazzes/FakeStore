@@ -5,6 +5,8 @@ import {Car} from "../../models/DataBaseModels";
 import axios from "axios";
 import {carURL} from "../../http/urls";
 import ItemCard from "../../components/shop/ItemCard";
+import ItemsPage from "../../components/shop/itemsPage";
+import LoadingItemsCard from "../../components/shop/LoadingItemsCard";
 
 interface ICarsResposne{
     count: number,
@@ -17,8 +19,12 @@ const ShopPage = () => {
         count: 0,
         rows: []
     }
-
     const [cars, setCars] = useState<ICarsResposne>(initialState)
+    const [loading, setLoading] = useState(true)
+
+    const addToCompare = (id: number) => {
+
+    }
 
     const getCars = async () => {
         const carsResponse = await axios.get<ICarsResposne>(carURL)
@@ -26,8 +32,16 @@ const ShopPage = () => {
     }
 
     useEffect( () => {
-        getCars()
+        getCars().then( () => {
+            setLoading(false)
+        })
     }, []);
+
+    if (loading){
+        return (
+            <LoadingItemsCard />
+        )
+    }
 
     return (
         <div className="commonContainer">
@@ -39,9 +53,12 @@ const ShopPage = () => {
             </div>
             <div className="shopPage__cards">
                 {cars.rows.map(car =>
-                    <ItemCard car={car} key={car.id} />
+                    <ItemCard addToCompare={addToCompare} car={car} key={car.id} />
                 )}
             </div>
+
+            <ItemsPage count={cars.count}/>
+
         </div>
     )
 };

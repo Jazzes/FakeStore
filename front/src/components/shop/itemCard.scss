@@ -2,13 +2,13 @@
 
 .itemCard__container{
   width: 32%;
-  height: 290px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.10);
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+  position: relative;
 }
 .itemCard__image{
   width: 95%;
@@ -24,4 +24,57 @@
   font-size: 2rem;
   width: 95%;
   text-align: center;
+  height: 50px;
+}
+
+.itemCard__info{
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10px;
+  margin-top: 10px;
+}
+
+.itemCard__info__column_1, .itemCard__info__column_2{
+  display: flex;
+  flex-direction: column;
+}
+
+.itemCard__info__column_2{
+  align-items: flex-end;
+}
+
+.itemCard__link{
+  background: black;
+  border: 1px  rgba(255, 255, 255, 0.50) solid;
+  font-size: 2rem;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 50px;
+  margin: 10px 0;
+  transition: .3s ease all;
+}
+
+.itemCard__link:hover{
+  background: white;
+  color: black;
+}
+
+.itemCard__compare{
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  cursor: pointer;
+  transition: .3s ease all;
+}
+
+.itemCard__compare:hover{
+  transform: scale(1.05)
+}
+
+@media screen and (max-width: 650px){
+  .itemCard__container{
+    width: 48%;
+  }
 }
