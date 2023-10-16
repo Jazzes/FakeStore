@@ -1,6 +1,6 @@
 @import "../../csscomponents/default";
 
-.itemCard__container{
+.itemCard__container, .itemCardLoading__container{
   width: 32%;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.10);
@@ -10,7 +10,10 @@
   margin-top: 20px;
   position: relative;
 }
-.itemCard__image{
+.itemCardLoading__container{
+  height: 360px;
+}
+.itemCard__image, .itemCardLoading__image{
   width: 95%;
   aspect-ratio: 25/13;
   border-radius: 10px;
@@ -19,7 +22,11 @@
   margin-top: 10px;
 }
 
-.itemCard__name{
+.itemCardLoading__image{
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.itemCard__name, .itemCardLoading__name{
   margin-top: 10px;
   font-size: 2rem;
   width: 95%;
@@ -27,13 +34,25 @@
   height: 50px;
 }
 
-.itemCard__info{
+.itemCardLoading__name{
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.itemCard__info, .itemCardLoading__info{
   font-size: 1.5rem;
   display: flex;
   justify-content: space-between;
   width: 100%;
   padding: 0 10px;
   margin-top: 10px;
+}
+
+.itemCardLoading__info{
+  width: 95%;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
 }
 
 .itemCard__info__column_1, .itemCard__info__column_2{
@@ -45,7 +64,7 @@
   align-items: flex-end;
 }
 
-.itemCard__link{
+.itemCard__link, .itemCardLoading__link{
   background: black;
   border: 1px  rgba(255, 255, 255, 0.50) solid;
   font-size: 2rem;
@@ -54,6 +73,12 @@
   border-radius: 50px;
   margin: 10px 0;
   transition: .3s ease all;
+}
+
+.itemCardLoading__link{
+  width: 89px;
+  height: 42px;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .itemCard__link:hover{
@@ -74,7 +99,10 @@
 }
 
 @media screen and (max-width: 650px){
-  .itemCard__container{
+  .itemCard__container, .itemCardLoading__container{
     width: 48%;
+  }
+  .itemCardLoading__container{
+    height: 230px;
   }
 }

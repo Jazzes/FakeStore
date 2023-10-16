@@ -32,6 +32,23 @@
   width: 100%;
   font-size: 2rem;
   justify-content: center;
+  display: flex;
+  margin-top: 20px;
+}
+
+.shopPage__page__item{
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.shopPage__page__selected{
+  border: 2px solid white;
 }
 
 @media screen and (max-width: 500px) {
