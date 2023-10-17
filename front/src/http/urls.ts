@@ -1,3 +1,7 @@
-const url = "http://localhost:5005"
+export const baseUrl = "http://localhost:5005/api"
 
-export const carURL = `${url}/api/car`
+export const carURLPref = `/car`
+
+export const brandURLPref = `/brand`
+
+export const engineURLPref = `/engine`

@@ -1,8 +1,8 @@
 import React from 'react';
-import {Car} from "../../models/DataBaseModels";
+import {Car} from "../../../models/DataBaseModels";
 import "./itemCard.scss"
 import {Link} from "react-router-dom";
-import compare from "../../static/photos/compare.svg"
+import compare from "../../../static/photos/compare.svg"
 
 interface IItemCard {
     car: Car

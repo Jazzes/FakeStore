@@ -1,14 +1,17 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
-import userReducer from './reducer/UserSlice'
-
+import {carApi} from "./services/ApiServices";
+import {userSlice} from "./reducer/UserSlice";
 
 const rootReducer = combineReducers({
+    userReducer: userSlice.reducer,
+    [carApi.reducerPath]: carApi.reducer,
 })
 
 export const setupStore = () => {
     return configureStore({
-        reducer: rootReducer
-
+        reducer: rootReducer,
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware().concat(carApi.middleware)
     })
 }
 

@@ -1,25 +1,19 @@
-import {User} from "../../models/DataBaseModels";
-import {createSlice} from "@reduxjs/toolkit";
-
-
-interface UserState {
-    users: User[]
-    isLoading: boolean
-    error: string
-}
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {UserState} from "../../models/storeModels";
 
 const initialState : UserState = {
-    users: [],
-    isLoading: false,
-    error: ''
+    isAuth: false,
+    email: '',
+    role: '',
+    id: 0
 }
 
 export const userSlice = createSlice({
-    name: 'user',
-    initialState: initialState,
+    name: 'car',
+    initialState,
     reducers: {
-
+        LogInOut(state, action: PayloadAction<boolean>){
+            state.isAuth = action.payload
+        },
     }
 })
-
-export default userSlice
