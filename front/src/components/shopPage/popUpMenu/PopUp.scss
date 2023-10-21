@@ -1,2 +1,76 @@
 @import "../../../csscomponents/default";
 
+.popUp__container{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  background: black;
+  z-index: 1;
+  padding: 0 15px 15px 15px;
+  overflow-y: scroll;
+  max-height: 290px;
+}
+.popUp__container::-webkit-scrollbar {
+   width: 6px;
+ }
+.popUp__container::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 30px;
+}
+
+.popUp__item{
+  margin-top: 15px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: .3s ease all;
+  display: flex;
+  align-items: center;
+}
+
+.popUp__item:hover{
+  color: lightgray;
+}
+
+.popUp__item__selected{
+  background: white;
+}
+.popUp__item__square, .popUp__item__circle{
+  width: 20px;
+  height: 20px;
+  border: 1px solid white;
+  margin-right: 15px;
+}
+.popUp__item__circle{
+  border-radius: 20px;
+}
+
+.popUp__item__clear{
+  color: lightgray;
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  top: 15px;
+  transition: .3s ease all;
+}
+.popUp__item__clear:hover{
+  color: gray;
+}
+
+.popUp__price__cont{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.popUp__price__input{
+  border: 1px solid white;
+  background: black;
+  outline: none;
+  color: white;
+  width: 100px;
+  padding: 5px;
+  font-size: $fSizeText;
+  appearance: none;
+}

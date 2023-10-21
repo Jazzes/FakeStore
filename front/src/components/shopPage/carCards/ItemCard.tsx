@@ -14,7 +14,9 @@ const ItemCard = ({car, addToCompare}: IItemCard) => {
 
     return (
         <div className="itemCard__container">
-            <img className="itemCard__image" src={imgUrl + car.img} alt=""/>
+            <Link to={"/car/" + car.id}>
+                <img className="itemCard__image" src={imgUrl + car.img} alt=""/>
+            </Link>
             <div className="itemCard__name">
                 {car.name}
             </div>

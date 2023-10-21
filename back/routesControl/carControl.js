@@ -55,10 +55,10 @@ class CarControl{
             let cars, offset = limit * page - limit
             const options = {}
             if (brandId) {
-                options.brandId = brandId
+                options.brandId = {[Op.or]: brandId.split(",")}
             }
             if (engineId) {
-                options.engineId = engineId
+                options.engineId = {[Op.or]: engineId.split(",")}
             }
             if (pricemin || pricemax) {
                 options.price = {}

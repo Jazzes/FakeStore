@@ -1,7 +1,7 @@
 @import "../../csscomponents/default";
 
 .shopPage__sort {
-  font-size: 2rem;
+  font-size:$fSizeText;
   display: flex;
   width: 100%;
   border-bottom: 1px solid white;
@@ -13,11 +13,17 @@
   height: fit-content;
   display: flex;
   align-items: center;
-  cursor: pointer;
   transition: .3s ease all;
+  position: relative;
 }
 
-.shopPage__sort__item:hover{
+.shopPage__sort__item__name{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.shopPage__sort__item__name:hover{
   color: lightgray;
 }
 
@@ -25,12 +31,12 @@
   display: flex;
   flex-wrap: wrap;
   padding: 0 30px;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .shopPage__page__container{
   width: 100%;
-  font-size: 2rem;
+  font-size: $fSizeText;
   justify-content: center;
   display: flex;
   margin-top: 20px;
@@ -49,6 +55,11 @@
 
 .shopPage__page__selected{
   border: 2px solid white;
+}
+
+.shopPage__noCars{
+  font-size: 4rem;
+  margin-top: 30px;
 }
 
 @media screen and (max-width: 500px) {

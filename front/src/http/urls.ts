@@ -5,3 +5,5 @@ export const carURLPref = `/car`
 export const brandURLPref = `/brand`
 
 export const engineURLPref = `/engine`
+
+export const userURLPref = `/user`

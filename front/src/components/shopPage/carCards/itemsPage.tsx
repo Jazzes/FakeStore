@@ -3,10 +3,10 @@ import React, {useEffect, useState} from 'react';
 interface IItemsPage{
     count: number,
     searchParams : URLSearchParams
-    changeSearchParamsPage: (value: string) => void
+    addSearchParams: (name: string, value: string) => void
 }
 
-const ItemsPage = ({count, searchParams, changeSearchParamsPage} : IItemsPage) => {
+const ItemsPage = ({count, searchParams, addSearchParams} : IItemsPage) => {
 
     const limit = 12
     const [pages, setPages] = useState<number[]>([])
@@ -27,12 +27,14 @@ const ItemsPage = ({count, searchParams, changeSearchParamsPage} : IItemsPage) =
         setPages(tempArr)
     }, [count]);
 
-
+    if (count <= 12){
+        return <></>
+    }
     return (
         <div className="shopPage__page__container">
             {pages.map(ent =>
                 <div key={ent} onClick={() => {
-                    changeSearchParamsPage(String(ent))
+                    addSearchParams('page', String(ent))
                 }} className={currentPage === ent ?
                     "shopPage__page__item shopPage__page__selected" : "shopPage__page__item"}>
                     {ent}

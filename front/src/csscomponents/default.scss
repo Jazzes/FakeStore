@@ -7,10 +7,14 @@ $fSizeInscription: 1.5rem;
   width: 100%;
 }
 
-%padding-0-30{
-  padding: 0 30px;
-}
-
 .bold{
   font-weight: bold;
 }
+
+.noSelect{
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+

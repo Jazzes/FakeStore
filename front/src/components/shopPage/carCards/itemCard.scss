@@ -28,7 +28,7 @@
 
 .itemCard__name, .itemCardLoading__name{
   margin-top: 10px;
-  font-size: 2rem;
+  font-size: $fSizeText;
   width: 95%;
   text-align: center;
   height: 50px;
@@ -40,7 +40,7 @@
 }
 
 .itemCard__info, .itemCardLoading__info{
-  font-size: 1.5rem;
+  font-size: $fSizeInscription;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -67,7 +67,7 @@
 .itemCard__link, .itemCardLoading__link{
   background: black;
   border: 1px  rgba(255, 255, 255, 0.50) solid;
-  font-size: 2rem;
+  font-size: $fSizeText;
   color: white;
   padding: 8px 12px;
   border-radius: 50px;

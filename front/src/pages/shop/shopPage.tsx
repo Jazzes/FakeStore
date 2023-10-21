@@ -25,12 +25,33 @@ const ShopPage = () => {
     const [showPrice, setShowPrice] = useState(false)
     const [showSort, setShowSort] = useState(false)
 
-    const changeSearchParamsPage = (value: string) => {
-        setSearchParams({...searchParams, page: value})
+    const addSearchParams = (name: string, value: string) => {
+        searchParams.set(name, value)
+        setSearchParams(searchParams)
+    }
+
+    const deleteSearchParam = (name: string) => {
+        searchParams.delete(name)
+        setSearchParams(searchParams)
     }
 
     const addToCompare = (id: number) => {
 
+    }
+
+    const closePopUps = (name: string) => {
+        if (name !== "BRANDS"){
+            setShowBrand(false)
+        }
+        if (name !== "ENGINES"){
+            setShowEngine(false)
+        }
+        if (name !== "PRICE"){
+            setShowPrice(false)
+        }
+        if (name !== "SORT"){
+            setShowSort(false)
+        }
     }
 
     return (
@@ -38,30 +59,42 @@ const ShopPage = () => {
             <div className="shopPage__sort">
                 <div onClick={() => {
                     setShowBrand(prev => !prev)
-                }} className="shopPage__sort__item">BRANDS
+                    closePopUps("BRANDS")
+                }} className="shopPage__sort__item">
+                    <div className="shopPage__sort__item__name noSelect">BRANDS</div>
                     {(showBrand && brands) &&
-                        <BrandsPopUp brands={brands}/>
+                        <BrandsPopUp searchParams={searchParams} deleteSearchParam={deleteSearchParam}
+                                     addSearchParam={addSearchParams} brands={brands}/>
                     }
                 </div>
                 <div onClick={() => {
                     setShowEngine(prev => !prev)
-                }} className="shopPage__sort__item">ENGINE
+                    closePopUps("ENGINES")
+                }} className="shopPage__sort__item">
+                    <div className="shopPage__sort__item__name noSelect">ENGINES</div>
                     {(showEngine && engines) &&
-                        <EnginePopUp engines={engines} />
+                        <EnginePopUp searchParams={searchParams} deleteSearchParam={deleteSearchParam}
+                                     addSearchParam={addSearchParams} engines={engines} />
                     }
                 </div>
                 <div onClick={() => {
                     setShowPrice(prev => !prev)
-                }} className="shopPage__sort__item">PRICE
+                    closePopUps("PRICE")
+                }} className="shopPage__sort__item">
+                    <div className="shopPage__sort__item__name noSelect">PRICE</div>
                     {showPrice &&
-                        <PricePopUp />
+                        <PricePopUp searchParams={searchParams} deleteSearchParam={deleteSearchParam}
+                                    addSearchParam={addSearchParams}/>
                     }
                 </div>
                 <div onClick={() => {
                     setShowSort(prev => !prev)
-                }} className="shopPage__sort__item">SORT <img style={{marginLeft: 5}} src={arrowDowm} alt=""/>
+                    closePopUps("SORT")
+                }} className="shopPage__sort__item">
+                    <div className="shopPage__sort__item__name noSelect">SORT <img style={{marginLeft: 5}} src={arrowDowm} alt=""/> </div>
                     {showSort &&
-                        <SortPopUp />
+                        <SortPopUp searchParams={searchParams} deleteSearchParam={deleteSearchParam}
+                                   addSearchParam={addSearchParams} />
                     }
                 </div>
             </div>
@@ -83,8 +116,14 @@ const ShopPage = () => {
                     )
                 }
 
+                {cars && cars.count === 0 ?
+                    <div className="shopPage__noCars">There are no cars</div>
+                    :
+                    <></>
+                }
+
                 {cars &&
-                    <ItemsPage changeSearchParamsPage={changeSearchParamsPage} searchParams={searchParams}
+                    <ItemsPage addSearchParams={addSearchParams} searchParams={searchParams}
                                count={cars ? cars.count : 0}/>
                 }
 
