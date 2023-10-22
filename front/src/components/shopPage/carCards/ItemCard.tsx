@@ -3,6 +3,7 @@ import {Car} from "../../../models/DataBaseModels";
 import "./itemCard.scss"
 import {Link} from "react-router-dom";
 import compare from "../../../static/photos/compare.svg"
+import {imgUrl} from "../../../http/urls";
 
 interface IItemCard {
     car: Car
@@ -10,8 +11,6 @@ interface IItemCard {
 }
 
 const ItemCard = ({car, addToCompare}: IItemCard) => {
-    const imgUrl = "http://localhost:5005/static/"
-
     return (
         <div className="itemCard__container">
             <Link to={"/car/" + car.id}>

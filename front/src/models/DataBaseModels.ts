@@ -21,7 +21,7 @@ export interface CarInfo{
     id: number,
     horsepower: number,
     topspeed: number,
-    engime: string,
+    engine: string,
     carId: number
 }
 

@@ -1,0 +1,41 @@
+@import "../../csscomponents/default";
+
+.itemCardPage__mainPhoto{
+  width: 100%;
+  object-fit: cover;
+}
+
+.itemCardPage__name{
+  text-align: center;
+  font-size: $fSizeHeader;
+}
+
+.itemCardPage__characteristics__cont{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  font-size: $fSizeText;
+}
+
+.itemCardPage__characteristics__cont__item, .itemCardPage__characteristics__buttons{
+  display: flex;
+  align-items: center;
+}
+
+.itemCardPage__characteristics__column{
+  display: flex;
+  flex-direction: column;
+}
+
+.itemCardPage__characteristics__button{
+  border-radius: 50px;
+  border: 1px solid white;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.itemCardPage__characteristics__description{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}

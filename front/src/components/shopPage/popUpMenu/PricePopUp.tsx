@@ -1,5 +1,6 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import "./PopUp.scss"
+import {TimeoutId} from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
 
 interface IPricePopUp{
     addSearchParam: (name: string, value: string) => void
@@ -9,17 +10,38 @@ interface IPricePopUp{
 
 const PricePopUp : FC<IPricePopUp> = ({addSearchParam, searchParams, deleteSearchParam}) => {
 
-    const minPriceInit = searchParams.get("pricemin") + ""
+    const minPriceInit = searchParams.get("pricemin") ? searchParams.get("pricemax") + "" : ""
 
-    const maxPriceInit = searchParams.get("pricemax") + ""
+    const maxPriceInit = searchParams.get("pricemax") ? searchParams.get("pricemax") + "" : ""
+
+    let minPriceTimeout = useRef<TimeoutId>()
+    let maxPriceTimeout = useRef<TimeoutId>()
 
     const [minPrice, setMinPrice] = useState(minPriceInit)
 
     const [maxPrice, setMaxPrice] = useState(maxPriceInit)
 
     useEffect(() => {
-        console.log(minPrice, maxPrice)
-    }, []);
+        clearTimeout(minPriceTimeout.current)
+        minPriceTimeout.current = setTimeout(() => {
+            if (minPrice && minPrice !== "") {
+                addSearchParam('pricemin', minPrice)
+            } else {
+                deleteSearchParam('pricemin')
+            }
+        }, 1000)
+    }, [minPrice]);
+
+    useEffect(() => {
+        clearTimeout(maxPriceTimeout.current)
+        maxPriceTimeout.current = setTimeout(() => {
+            if (maxPrice && maxPrice !== "") {
+                addSearchParam('pricemax', maxPrice)
+            } else {
+                deleteSearchParam('pricemax')
+            }
+        }, 1000)
+    }, [maxPrice]);
 
     return (
         <div className="popUp__container" onClick={(e) => {
@@ -32,10 +54,10 @@ const PricePopUp : FC<IPricePopUp> = ({addSearchParam, searchParams, deleteSearc
             <div className="popUp__price__cont" style={{marginTop: 5}}>
                 <input className="popUp__price__input" onChange={(e) => {
                     setMinPrice(e.target.value)
-                }} style={{marginRight: 20}} value={minPrice}/>
+                }} style={{marginRight: 20}} type="number" value={minPrice}/>
                 <input className="popUp__price__input" onChange={(e) => {
                     setMaxPrice(e.target.value)
-                }} value={maxPrice}/>
+                }} value={maxPrice} type="number"/>
             </div>
         </div>
     );

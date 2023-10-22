@@ -49,11 +49,12 @@ class CarControl{
 
     async getCars(req, res, next){
         try {
-            let {brandId, engineId, limit, page, pricemin, pricemax} = req.query
+            let {brandId, engineId, limit, page, pricemin, pricemax, sort} = req.query
             limit = limit || 12
             page = page || 1
             let cars, offset = limit * page - limit
             const options = {}
+            let sortBy = []
             if (brandId) {
                 options.brandId = {[Op.or]: brandId.split(",")}
             }
@@ -69,7 +70,25 @@ class CarControl{
                     options.price[Op.lte] = pricemax
                 }
             }
-            cars = await Car.findAndCountAll({where: options, limit, offset})
+            switch (sort) {
+                case "1":
+                    sortBy.push("price")
+                    break
+                case "2":
+                    sortBy.push(["price", "DESC"])
+                    break
+                case "3":
+                    sortBy.push("acceleration")
+                    break
+                case "4":
+                    sortBy.push(["acceleration", "DESC"])
+                    break
+                default:
+                    break
+            }
+
+            cars = await Car.findAndCountAll({where: options, limit, offset,
+                order: [...sortBy]})
             return res.json(cars)
         } catch (e){
             return next(ApiError.badRequest(e.message))
