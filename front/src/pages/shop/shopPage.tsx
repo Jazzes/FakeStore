@@ -16,8 +16,8 @@ const ShopPage = () => {
     const [searchParams, setSearchParams] = useSearchParams()
 
     const {data: cars, isLoading: isLoadingCar, error: errorCar} = carApi.useFetchAllCarsQuery(searchParams.toString())
-    const {data: brands, isLoading: isLoadingBrand, error: errorBrand} = carApi.useFetchAllBrendsQuery('')
-    const {data: engines, isLoading: isLoadingEngine, error: errorEngine} = carApi.useFetchAllEnginesQuery('')
+    const {data: brands} = carApi.useFetchAllBrendsQuery('')
+    const {data: engines} = carApi.useFetchAllEnginesQuery('')
 
 
     const [showBrand, setShowBrand] = useState(false)

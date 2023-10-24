@@ -1,0 +1,24 @@
+.backButton__container{
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.backButton__arrow{
+  transform: rotate(90deg);
+  width: 25px;
+  cursor: pointer;
+}
+
+.backButton__arrowContainer{
+  padding: 5px;
+  border: 1px solid white;
+  border-radius: 50px;
+  box-shadow: 0 0 10px gray;
+  aspect-ratio: 1/1;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
