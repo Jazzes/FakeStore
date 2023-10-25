@@ -14,6 +14,7 @@ import ItemCardPage from "./pages/shop/itemCardPage";
 import OrderPage from "./pages/buy/orderPage";
 import AdminPage from "./pages/adminPage/adminPage";
 import Layout from "./components/layout/Layout";
+import LayoutUserRoutes from "./components/layout/LayoutUserRoutes";
 
 function App() {
 
@@ -32,11 +33,14 @@ function App() {
                 <Route path="login" element={<SignInPage/>}/>
                 <Route path="contact" element={<ContactPage/>}/>
 
-                <Route path="basket" element={<BasketPage/>}/>
-                <Route path="compare" element={<ComparePage/>}/>
-                <Route path="account" element={<AccountPage/>}/>
-                <Route path="order" element={<OrderPage/>}/>
-                <Route path="admin" element={< AdminPage/>}/>
+                <Route element={<LayoutUserRoutes/>}>
+                    <Route path="basket" element={<BasketPage/>}/>
+                    <Route path="compare" element={<ComparePage/>}/>
+                    <Route path="account" element={<AccountPage/>}/>
+                    <Route path="order" element={<OrderPage/>}/>
+                    <Route path="admin" element={< AdminPage/>}/>
+                </Route>
+
 
                 <Route path="*" element={<NotFoundPage/>}/>
             </Route>

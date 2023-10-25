@@ -1,0 +1,63 @@
+@import "../../csscomponents/default";
+
+.signInPage__SignIn{
+  text-align: center;
+  font-size: $fSizeHeader;
+  margin-top: 30px;
+}
+
+.signInPage__form_shell{
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.signInPage__form__item{
+  font-size: $fSizeInscription;
+}
+
+.signInPage__form{
+  padding: 30px;
+  width: 310px;
+  border-radius: 30px;
+  background: rgba(217, 217, 217, 0.10);
+  height: 340px;
+}
+
+.signInPage__pos{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.signInPage__form__input{
+  border: 0;
+  outline: 0;
+  font-size: $fSizeText;
+  appearance: none;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.10);
+  color: white;
+  padding: 8px 12px;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.signInPage__form__button{
+  border: 1px solid #FFFFFF;
+  font-size: $fSizeText;
+  text-align: center;
+  background: black;
+  color: white;
+  border-radius: 50px;
+  padding: 8px 12px;
+  position: relative;
+  cursor: pointer;
+  transition: .3s ease all;
+}
+
+.signInPage__form__button:hover{
+  color: black;
+  background: white;
+}

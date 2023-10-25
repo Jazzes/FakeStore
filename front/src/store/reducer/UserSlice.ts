@@ -12,8 +12,17 @@ export const userSlice = createSlice({
     name: 'car',
     initialState,
     reducers: {
-        LogInOut(state, action: PayloadAction<boolean>){
-            state.isAuth = action.payload
+        LogIn(state, action: PayloadAction<UserState>){
+            state.isAuth = action.payload.isAuth
+            state.email = action.payload.email
+            state.role = action.payload.role
+            state.id = action.payload.id
         },
+        LogOut(state, action: PayloadAction<boolean>){
+            state.email = ''
+            state.role = ''
+            state.id = 0
+            state.isAuth = action.payload
+        }
     }
 })
