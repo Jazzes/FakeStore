@@ -34,10 +34,10 @@
 .signInPage__form__input{
   border: 0;
   outline: 0;
-  font-size: $fSizeText;
+  font-size: $fSizeInscription;
   appearance: none;
   border-radius: 50px;
-  background: rgba(255, 255, 255, 0.10);
+  background: rgba(125, 125, 125, 0.7);
   color: white;
   padding: 8px 12px;
   width: 100%;
@@ -60,4 +60,10 @@
 .signInPage__form__button:hover{
   color: black;
   background: white;
+}
+
+.signInPage__serverError{
+  margin-top: 5px;
+  font-size: $fSizeInscription;
+  color: #E83B46;
 }
