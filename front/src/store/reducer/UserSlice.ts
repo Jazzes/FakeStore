@@ -1,4 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {User} from "../../models/DataBaseModels";
 import {UserState} from "../../models/storeModels";
 
 const initialState : UserState = {
@@ -9,20 +10,20 @@ const initialState : UserState = {
 }
 
 export const userSlice = createSlice({
-    name: 'car',
+    name: 'user',
     initialState,
     reducers: {
-        LogIn(state, action: PayloadAction<UserState>){
-            state.isAuth = action.payload.isAuth
+        LogIn(state, action: PayloadAction<User>){
+            state.isAuth = true
             state.email = action.payload.email
             state.role = action.payload.role
             state.id = action.payload.id
         },
-        LogOut(state, action: PayloadAction<boolean>){
+        LogOut(state){
             state.email = ''
             state.role = ''
             state.id = 0
-            state.isAuth = action.payload
+            state.isAuth = false
         }
     }
 })

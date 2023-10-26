@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import "./layout.scss"
-import {Link, Outlet} from 'react-router-dom'
-import logo from "../../static/photos/logo.svg"
-import basket from "../../static/photos/basket.svg"
-import find from "../../static/photos/find.svg"
+import {Link, Outlet} from 'react-router-dom';
+import logo from "../../static/photos/logo.svg";
+import basket from "../../static/photos/basket.svg";
+import find from "../../static/photos/find.svg";
 import Navbar from "../navbar/navbar";
 
 const Layout = () => {

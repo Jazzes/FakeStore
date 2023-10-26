@@ -2,27 +2,28 @@ import React, {FormEvent, useState} from 'react';
 import "./signIn.scss"
 import axios, {AxiosError} from "axios";
 import {loginURL} from "../../http/urls";
+import jwtDecode from "jwt-decode";
+import {setCookie} from "../../http/cookies";
+import {Link} from "react-router-dom";
+import {useAppDispatch} from "../../store/hooks/redux";
+import {userSlice} from "../../store/reducer/UserSlice";
+import {User} from "../../models/DataBaseModels";
 
 const SignInPage = () => {
 
+    const {LogIn} = userSlice.actions
+    const dispatch = useAppDispatch()
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [passwordError, setPasswordError] = useState(false)
     const [serverError, setServerError] = useState('')
-
-    const handlePassword = (checkedPassword: string) => {
-        if (checkedPassword.length < 8){
-            setPasswordError(true)
-            return false
-        }
-        setPasswordError(false)
-        return true
-    }
 
     const fetchToken = async (email: string, password: string) => {
         try {
-            const token = await axios.post(loginURL, {email, password})
-            console.log(token.data)
+            const response = (await axios.post(loginURL, {email, password})).data.token
+            const tokenDecoded : User = jwtDecode(response)
+            setCookie("token", response, 604800)
+            dispatch(LogIn(tokenDecoded))
         } catch (e) {
             const err = e as AxiosError
             const errorMessage = err.response?.data as {message?: string}
@@ -32,11 +33,8 @@ const SignInPage = () => {
 
     const handleSubmit = async (e : FormEvent) => {
         e.preventDefault()
-        if (handlePassword(password)){
-            fetchToken(email, password).then(() => {
-
-            })
-        }
+        fetchToken(email, password).then(() => {
+        })
     }
 
     return (
@@ -56,11 +54,8 @@ const SignInPage = () => {
                                 Password
                                 <input value={password} onChange={(e) => {
                                     setPassword(e.target.value)
-                                }} autoComplete="new-password"
+                                }} autoComplete="current-password"
                                        type="password" className="signInPage__form__input"/>
-                                {passwordError &&
-                                    <div style={{color: "#E83B46", marginTop: 5}}>Password must be 8 or more characters</div>
-                                }
                             </div>
                             {serverError !== "" &&
                                 <div className="signInPage__serverError bold">{serverError}</div>
@@ -71,6 +66,9 @@ const SignInPage = () => {
                         </button>
                     </form>
                 </div>
+            </div>
+            <div className="signInPage__buttonToSign">
+                Or <Link className="signInPage__buttonToSign__link" to="/registration">create an account </Link>
             </div>
         </div>
     );

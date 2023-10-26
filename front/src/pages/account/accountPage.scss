@@ -1,2 +1,63 @@
 @import "../../csscomponents/default";
 
+.accountPage__container{
+  padding: 0 30px;
+  margin-top: 30px;
+  width: 100%;
+}
+.accountPage__flex{
+  display: flex;
+}
+
+.accountPage__info__email{
+  font-size: $fSizeInscription;
+}
+
+.accountPage__info_shell{
+  justify-content: space-between;
+  padding: 30px;
+  font-size: $fSizeText;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  background: rgba(217, 217, 217, 0.10);
+}
+
+.accountPage__info__password{
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  transition: .3s ease all;
+}
+
+.accountPage__info__password:hover{
+  color: lightgray;
+}
+
+.accountPage__orders{
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: $fSizeText;
+  margin-left: 20px;
+  width: calc(100% - 320px);
+}
+
+.accountPage__LogOut{
+  width: 100%;
+  font-size: $fSizeHeader;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.accountPage__LogOut__text{
+  cursor: pointer;
+  text-decoration: 1px underline white;
+}
+
+.accountPage__LogOut__text:hover{
+  text-decoration: none;
+}

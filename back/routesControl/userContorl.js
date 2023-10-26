@@ -35,8 +35,7 @@ class UserControl{
             const hashPassword = await bcrypt.hash(password, 5)
             if (secretword === process.env.SECRET_WORD){
                 user = await User.create({email, role: "ADMIN", password: hashPassword})
-            }
-            else {
+            } else {
                 user = await User.create({email, password: hashPassword})
             }
 

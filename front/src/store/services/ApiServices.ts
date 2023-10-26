@@ -4,7 +4,7 @@ import {ICarResponse, ICarsResponse} from "../../models/storeModels";
 import {Brand, Engine} from "../../models/DataBaseModels";
 
 export const carApi = createApi({
-    reducerPath: 'car/api',
+    reducerPath: 'car',
     baseQuery: fetchBaseQuery({
         baseUrl: baseUrl
     }),

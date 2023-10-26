@@ -67,3 +67,16 @@
   font-size: $fSizeInscription;
   color: #E83B46;
 }
+
+.signInPage__buttonToSign{
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  white-space: pre-wrap;
+  font-size: $fSizeInscription;
+}
+
+.signInPage__buttonToSign__link{
+  color: white;
+  text-decoration: underline 1px white;
+}

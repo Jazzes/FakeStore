@@ -15,8 +15,11 @@ import OrderPage from "./pages/buy/orderPage";
 import AdminPage from "./pages/adminPage/adminPage";
 import Layout from "./components/layout/Layout";
 import LayoutUserRoutes from "./components/layout/LayoutUserRoutes";
+import {UpdateAuth} from "./components/auth/auth";
 
 function App() {
+
+    UpdateAuth().then()
 
     return (
         <Routes>
