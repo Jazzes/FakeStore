@@ -4,12 +4,13 @@ import axios, {AxiosError} from "axios";
 import {loginURL} from "../../http/urls";
 import jwtDecode from "jwt-decode";
 import {setCookie} from "../../http/cookies";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useAppDispatch} from "../../store/hooks/redux";
 import {userSlice} from "../../store/reducer/UserSlice";
 import {User} from "../../models/DataBaseModels";
 
 const SignInPage = () => {
+    const navigate = useNavigate()
 
     const {LogIn} = userSlice.actions
     const dispatch = useAppDispatch()
@@ -21,17 +22,18 @@ const SignInPage = () => {
     const fetchToken = async (email: string, password: string) => {
         try {
             const response = (await axios.post(loginURL, {email, password})).data.token
-            const tokenDecoded : User = jwtDecode(response)
+            const tokenDecoded: User = jwtDecode(response)
             setCookie("token", response, 604800)
             dispatch(LogIn(tokenDecoded))
+            navigate('/account')
         } catch (e) {
             const err = e as AxiosError
-            const errorMessage = err.response?.data as {message?: string}
+            const errorMessage = err.response?.data as { message?: string }
             setServerError(errorMessage.message ? errorMessage.message : "")
         }
     }
 
-    const handleSubmit = async (e : FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         fetchToken(email, password).then(() => {
         })
@@ -48,13 +50,14 @@ const SignInPage = () => {
                                 E-mail address
                                 <input value={email} onChange={
                                     (e) => setEmail(e.target.value)}
-                                    autoComplete="email" type="email" className="signInPage__form__input"/>
+                                       required={true} autoComplete="email" type="email"
+                                       className="signInPage__form__input"/>
                             </div>
                             <div className="signInPage__form__item bold" style={{marginTop: 30}}>
                                 Password
                                 <input value={password} onChange={(e) => {
                                     setPassword(e.target.value)
-                                }} autoComplete="current-password"
+                                }} autoComplete="current-password" required={true}
                                        type="password" className="signInPage__form__input"/>
                             </div>
                             {serverError !== "" &&
@@ -68,7 +71,7 @@ const SignInPage = () => {
                 </div>
             </div>
             <div className="signInPage__buttonToSign">
-                Or <Link className="signInPage__buttonToSign__link" to="/registration">create an account </Link>
+                Or <Link className="signInPage__buttonToSign__link" to="/register">create an account </Link>
             </div>
         </div>
     );

@@ -1,18 +1,19 @@
 import React from 'react';
-import {Navigate, Outlet} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 import {useAppSelector} from "../../store/hooks/redux";
 import "./layout.scss"
+import NotFoundPage from "../../pages/notFoundPage/notFoundPage";
 
 const LayoutUserRoutes = () => {
 
-    const {isAuth} = useAppSelector(state => state.userReducer)
+    const {role} = useAppSelector(state => state.userReducer)
 
     return (
         <>
-            {isAuth ?
+            {role === "ADMIN" ?
                 <Outlet/>
                 :
-                <Navigate to={"/login"}/>
+                <NotFoundPage/>
             }
         </>
     );

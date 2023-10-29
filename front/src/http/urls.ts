@@ -8,7 +8,9 @@ export const engineURLPref = `/engine`
 
 export const loginURL = `${baseUrl}/user/login`
 
-export const registrationURL = `${baseUrl}/user/registration`
+export const registerURL = `${baseUrl}/user/register`
+
+export const resPasURL = `${baseUrl}/user/resetpassword`
 
 export const authURL = `${baseUrl}/user/auth`
 

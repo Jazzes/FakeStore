@@ -1,19 +1,21 @@
 @import "../../csscomponents/default";
 
-.accountPage__container{
+.accountPage__container {
   padding: 0 30px;
   margin-top: 30px;
   width: 100%;
 }
-.accountPage__flex{
+
+.accountPage__flex {
   display: flex;
+  flex-wrap: wrap;
 }
 
-.accountPage__info__email{
+.accountPage__info__email {
   font-size: $fSizeInscription;
 }
 
-.accountPage__info_shell{
+.accountPage__info_shell {
   justify-content: space-between;
   padding: 30px;
   font-size: $fSizeText;
@@ -25,18 +27,18 @@
   background: rgba(217, 217, 217, 0.10);
 }
 
-.accountPage__info__password{
+.accountPage__info__password {
   width: 100%;
   text-align: center;
   cursor: pointer;
   transition: .3s ease all;
 }
 
-.accountPage__info__password:hover{
+.accountPage__info__password:hover {
   color: lightgray;
 }
 
-.accountPage__orders{
+.accountPage__orders {
   flex-shrink: 1;
   display: flex;
   flex-direction: column;
@@ -45,7 +47,7 @@
   width: calc(100% - 320px);
 }
 
-.accountPage__LogOut{
+.accountPage__LogOut {
   width: 100%;
   font-size: $fSizeHeader;
   display: flex;
@@ -53,11 +55,114 @@
   margin-top: 30px;
 }
 
-.accountPage__LogOut__text{
+.accountPage__LogOut__text {
   cursor: pointer;
   text-decoration: 1px underline white;
 }
 
-.accountPage__LogOut__text:hover{
+.accountPage__LogOut__text:hover {
   text-decoration: none;
+}
+
+.accountPage__resetPassword__background {
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%)
+}
+
+.accountPage__resetPassword__form {
+  width: 300px;
+  height: 300px;
+  background: #1e1e1e;
+  border-radius: 30px;
+  position: relative;
+  padding: 30px;
+  font-size: $fSizeInscription;
+}
+
+.accountPage__crossBack {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: white;
+  border-radius: 50px;
+  padding: 5px;
+  cursor: pointer;
+  transition: .3s ease all;
+}
+
+.accountPage__crossBack:hover {
+  background: lightgray;
+  transform: scale(1.05)
+}
+
+.accountPage__resetPassword__input {
+  border: 0;
+  outline: 0;
+  font-size: $fSizeInscription;
+  color: white;
+  padding: 8px 12px;
+  width: 100%;
+  margin-top: 5px;
+  appearance: none;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.accountPage__resetPassword__pos {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.accountPage__resetPassword__button{
+  border: 1px solid #FFFFFF;
+  font-size: $fSizeText;
+  text-align: center;
+  background: black;
+  color: white;
+  border-radius: 50px;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: .3s ease all;
+}
+
+.accountPage__resetPassword__button:hover{
+  color: black;
+  background: white;
+}
+
+.accountPage__resetPassword__error{
+  margin-top: 5px;
+  font-size: $fSizeInscription;
+  color: #E83B46;
+}
+
+.accountPage__resetPassword__success{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #11AA11;
+}
+
+@media screen and (max-width: 500px) {
+  .accountPage__orders {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .accountPage__info_shell {
+    width: 100%;
+  }
+
 }

@@ -15,7 +15,9 @@ import OrderPage from "./pages/buy/orderPage";
 import AdminPage from "./pages/adminPage/adminPage";
 import Layout from "./components/layout/Layout";
 import LayoutUserRoutes from "./components/layout/LayoutUserRoutes";
-import {UpdateAuth} from "./components/auth/auth";
+import {UpdateAuth} from "./components/user/auth";
+import LayoutSignInUp from "./components/layout/LayoutSignInUp";
+import LayoutAdmin from "./components/layout/LayoutAdmin";
 
 function App() {
 
@@ -31,17 +33,22 @@ function App() {
                 <Route path="latest" element={<LatestItemsPage/>}/>
 
                 <Route path="car/:id" element={<ItemCardPage/>}/>
-
-                <Route path="registration" element={<SignUpPage/>}/>
-                <Route path="login" element={<SignInPage/>}/>
                 <Route path="contact" element={<ContactPage/>}/>
+
+                <Route element={<LayoutSignInUp/>}>
+                    <Route path="register" element={<SignUpPage/>}/>
+                    <Route path="login" element={<SignInPage/>}/>
+                </Route>
 
                 <Route element={<LayoutUserRoutes/>}>
                     <Route path="basket" element={<BasketPage/>}/>
                     <Route path="compare" element={<ComparePage/>}/>
                     <Route path="account" element={<AccountPage/>}/>
                     <Route path="order" element={<OrderPage/>}/>
-                    <Route path="admin" element={< AdminPage/>}/>
+                    <Route element={<LayoutAdmin/>}>
+                        <Route path="admin" element={< AdminPage/>}/>
+                    </Route>
+
                 </Route>
 
 

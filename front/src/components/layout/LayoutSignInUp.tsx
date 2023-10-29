@@ -9,10 +9,10 @@ const LayoutUserRoutes = () => {
 
     return (
         <>
-            {isAuth ?
-                <Outlet/>
+            { isAuth ?
+                <Navigate to={"/account"}/>
                 :
-                <Navigate to={"/login"}/>
+                <Outlet />
             }
         </>
     );

@@ -11,5 +11,9 @@ userRouter.post('/register', [
     check('password').isLength({min: 8})
 ], userControl.register)
 userRouter.post('/login', userControl.login)
+userRouter.post('/resetpassword', [
+    check('newpassword').isLength({min: 8})
+], userControl.resetPassword)
 userRouter.get('/auth', auth(["USER", "ADMIN"]), userControl.auth)
+
 module.exports = {userRouter}

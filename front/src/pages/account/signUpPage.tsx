@@ -1,15 +1,16 @@
 import React, {FormEvent, useState} from 'react';
 import "./signIn.scss"
 import axios, {AxiosError} from "axios";
-import {loginURL, registrationURL} from "../../http/urls";
+import {registerURL} from "../../http/urls";
 import jwtDecode from "jwt-decode";
 import {setCookie} from "../../http/cookies";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {User} from "../../models/DataBaseModels";
 import {userSlice} from "../../store/reducer/UserSlice";
 import {useAppDispatch} from "../../store/hooks/redux";
 
 const SignUpPage = () => {
+    const navigate = useNavigate()
 
     const {LogIn} = userSlice.actions
     const dispatch = useAppDispatch()
@@ -20,7 +21,7 @@ const SignUpPage = () => {
     const [serverError, setServerError] = useState('')
 
     const handlePassword = (checkedPassword: string) => {
-        if (checkedPassword.length < 8){
+        if (checkedPassword.length < 8) {
             setPasswordError(true)
             return false
         }
@@ -30,20 +31,21 @@ const SignUpPage = () => {
 
     const fetchToken = async (email: string, password: string) => {
         try {
-            const response = (await axios.post(registrationURL, {email, password})).data.token
-            const tokenDecoded : User = jwtDecode(response)
+            const response = (await axios.post(registerURL, {email, password})).data.token
+            const tokenDecoded: User = jwtDecode(response)
             setCookie("token", response, 604800)
             dispatch(LogIn(tokenDecoded))
+            navigate('/account')
         } catch (e) {
             const err = e as AxiosError
-            const errorMessage = err.response?.data as {message?: string}
+            const errorMessage = err.response?.data as { message?: string }
             setServerError(errorMessage.message ? errorMessage.message : "")
         }
     }
 
-    const handleSubmit = async (e : FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
-        if (handlePassword(password)){
+        if (handlePassword(password)) {
             fetchToken(email, password).then(() => {
 
             })
@@ -61,16 +63,18 @@ const SignUpPage = () => {
                                 E-mail address
                                 <input value={email} onChange={
                                     (e) => setEmail(e.target.value)}
-                                       autoComplete="email" type="email" className="signInPage__form__input"/>
+                                       required={true} autoComplete="email" type="email"
+                                       className="signInPage__form__input"/>
                             </div>
                             <div className="signInPage__form__item bold" style={{marginTop: 30}}>
                                 Password
                                 <input value={password} onChange={(e) => {
                                     setPassword(e.target.value)
-                                }} autoComplete="new-password"
+                                }} autoComplete="new-password" required={true}
                                        type="password" className="signInPage__form__input"/>
                                 {passwordError &&
-                                    <div style={{color: "#E83B46", marginTop: 5}}>Password must be 8 or more characters</div>
+                                    <div style={{color: "#E83B46", marginTop: 5}}>Password must be 8 or more
+                                        characters</div>
                                 }
                             </div>
                             {serverError !== "" &&
