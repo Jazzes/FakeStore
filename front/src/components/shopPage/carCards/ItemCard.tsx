@@ -11,6 +11,7 @@ interface IItemCard {
 }
 
 const ItemCard = ({car, addToCompare}: IItemCard) => {
+
     return (
         <div className="itemCard__container">
             <Link to={"/car/" + car.id}>

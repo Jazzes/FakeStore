@@ -89,8 +89,6 @@ CompareCar.belongsTo(Car)
 Car.hasOne(CarInfo, {onDelete: "CASCADE"})
 CarInfo.belongsTo(Car)
 
-// sequelize.drop()
-
 module.exports = {
     User, Basket, BasketCar, Brand, Engine, CarInfo, Car, CarImages, CompareCar, Compare
 }

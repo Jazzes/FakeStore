@@ -100,7 +100,7 @@ class UserControl {
 
             await user.save()
 
-            return res.json({message: "success"})
+            return res.json({success: true})
         } catch (e) {
             return next(ApiError.badRequest(e.message))
         }

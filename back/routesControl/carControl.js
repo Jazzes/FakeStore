@@ -119,8 +119,6 @@ class CarControl{
             if (!car){
                 return next(ApiError.badRequest(`There is no car with id ${id}.`))
             }
-            console.log(typeof car.img)
-            console.log(car.img)
             fs.unlink(`${__dirname}/../static/${car.dataValues.img}`, err => {})
             for (let el of car.dataValues.car_images) {
                 await fs.unlink(`${__dirname}/../static/${el.dataValues.img}`, err => {})

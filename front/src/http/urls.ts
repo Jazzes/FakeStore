@@ -6,6 +6,12 @@ export const brandURLPref = `/brand`
 
 export const engineURLPref = `/engine`
 
+const shopURLPref = '/shop'
+
+export const BasketURLPref = `${shopURLPref}/basket`
+
+export const CompareURLPref = `${shopURLPref}/compare`
+
 export const loginURL = `${baseUrl}/user/login`
 
 export const registerURL = `${baseUrl}/user/register`

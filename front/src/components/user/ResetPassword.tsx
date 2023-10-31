@@ -32,7 +32,7 @@ const ResetPassword: FC<IResetPassword> = ({closeResetPassword}) => {
     const fetchNewPassword = async (email: string, password: string, newpassword: string) => {
         try {
             const response = (await axios.post(resPasURL, {email, password, newpassword})).data
-            if (response.message === "success"){
+            if (response.success === true){
                 setSuccessRes(true)
                 setTimeout(() => {
                     closeResetPassword()

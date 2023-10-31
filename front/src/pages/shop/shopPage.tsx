@@ -5,7 +5,7 @@ import ItemCard from "../../components/shopPage/carCards/ItemCard";
 import ItemsPage from "../../components/shopPage/carCards/itemsPage";
 import LoadingItemsCard from "../../components/shopPage/carCards/LoadingItemsCard";
 import {useSearchParams} from "react-router-dom";
-import {carApi} from "../../store/services/ApiServices";
+import {carApi, shopApi} from "../../store/services/ApiServices";
 import FailedToFetch from "../../components/error/FailedToFetch";
 import BrandsPopUp from "../../components/shopPage/popUpMenu/BrandsPopUp";
 import EnginePopUp from "../../components/shopPage/popUpMenu/EnginePopUp";
@@ -18,12 +18,19 @@ const ShopPage = () => {
     const {data: cars, isLoading: isLoadingCar, error: errorCar} = carApi.useFetchAllCarsQuery(searchParams.toString())
     const {data: brands} = carApi.useFetchAllBrendsQuery('')
     const {data: engines} = carApi.useFetchAllEnginesQuery('')
-
+    const {data: basketIds} = shopApi.useFetchBasketItemsQuery('')
+    const {data: compareIds} = shopApi.useFetchCompareItemsQuery('')
+    const [addCompare] = shopApi.useAddToCompareMutation()
 
     const [showBrand, setShowBrand] = useState(false)
     const [showEngine, setShowEngine] = useState(false)
     const [showPrice, setShowPrice] = useState(false)
     const [showSort, setShowSort] = useState(false)
+
+    useEffect(() => {
+        console.log(compareIds)
+        console.log(basketIds)
+    }, [compareIds, basketIds]);
 
     const addSearchParams = (name: string, value: string) => {
         searchParams.set(name, value)
@@ -35,8 +42,8 @@ const ShopPage = () => {
         setSearchParams(searchParams)
     }
 
-    const addToCompare = (id: number) => {
-
+    const addToCompare = async (id: number) => {
+        await addCompare(id)
     }
 
     const closePopUps = (name: string) => {
