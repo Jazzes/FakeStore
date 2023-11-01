@@ -89,7 +89,24 @@
 }
 .basketLogo{
   margin: 0 20px;
+  position: relative;
 }
+
+.basketItemsSize{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  background: #E83B46;
+  font-size: $fSizeInscription;
+  color: white;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
 .basketLogo:hover, .findLogo:hover{
   scale: (1.05);
 }

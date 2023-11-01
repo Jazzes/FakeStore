@@ -10,7 +10,11 @@ const shopURLPref = '/shop'
 
 export const BasketURLPref = `${shopURLPref}/basket`
 
+export const BasketIdsURLPref = `${shopURLPref}/basketid`
+
 export const CompareURLPref = `${shopURLPref}/compare`
+
+export const CompareIdsURLPref = `${shopURLPref}/compareid`
 
 export const loginURL = `${baseUrl}/user/login`
 

@@ -27,3 +27,22 @@ export interface BasketCarsId{
     count: number,
     rows: Array<{carId: number}>
 }
+
+export interface CarWithInfo extends Car{
+    car_info: CarInfo
+}
+
+export interface CompareCarsItems{
+    compareItems: Array<{
+        carId: number,
+        car: CarWithInfo
+    }>
+}
+
+export interface BasketCarsItems{
+    count: number,
+    rows: Array<{
+        carId: number,
+        car: Car
+    }>
+}

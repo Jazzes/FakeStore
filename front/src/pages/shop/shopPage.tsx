@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import "./shopPage.scss"
-import arrowDowm from "../../static/photos/arrow.svg"
+import arrowDown from "../../static/photos/arrow.svg"
 import ItemCard from "../../components/shopPage/carCards/ItemCard";
 import ItemsPage from "../../components/shopPage/carCards/itemsPage";
 import LoadingItemsCard from "../../components/shopPage/carCards/LoadingItemsCard";
@@ -18,19 +18,15 @@ const ShopPage = () => {
     const {data: cars, isLoading: isLoadingCar, error: errorCar} = carApi.useFetchAllCarsQuery(searchParams.toString())
     const {data: brands} = carApi.useFetchAllBrendsQuery('')
     const {data: engines} = carApi.useFetchAllEnginesQuery('')
-    const {data: basketIds} = shopApi.useFetchBasketItemsQuery('')
-    const {data: compareIds} = shopApi.useFetchCompareItemsQuery('')
+
+    const {data: compareIds} = shopApi.useFetchCompareIdsQuery('')
+    const compareArray = compareIds?.compareId.map(ent => ent.carId)
     const [addCompare] = shopApi.useAddToCompareMutation()
 
     const [showBrand, setShowBrand] = useState(false)
     const [showEngine, setShowEngine] = useState(false)
     const [showPrice, setShowPrice] = useState(false)
     const [showSort, setShowSort] = useState(false)
-
-    useEffect(() => {
-        console.log(compareIds)
-        console.log(basketIds)
-    }, [compareIds, basketIds]);
 
     const addSearchParams = (name: string, value: string) => {
         searchParams.set(name, value)
@@ -98,7 +94,7 @@ const ShopPage = () => {
                     setShowSort(prev => !prev)
                     closePopUps("SORT")
                 }} className="shopPage__sort__item">
-                    <div className="shopPage__sort__item__name noSelect">SORT <img style={{marginLeft: 5}} src={arrowDowm} alt=""/> </div>
+                    <div className="shopPage__sort__item__name noSelect">SORT <img style={{marginLeft: 5}} src={arrowDown} alt=""/> </div>
                     {showSort &&
                         <SortPopUp searchParams={searchParams} deleteSearchParam={deleteSearchParam}
                                    addSearchParam={addSearchParams} />
@@ -119,7 +115,7 @@ const ShopPage = () => {
 
                 {cars &&
                     cars.rows.map(car =>
-                        <ItemCard addToCompare={addToCompare} car={car} key={car.id}/>
+                        <ItemCard compareArray={compareArray} addToCompare={addToCompare} car={car} key={car.id}/>
                     )
                 }
 

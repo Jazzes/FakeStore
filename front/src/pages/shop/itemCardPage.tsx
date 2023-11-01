@@ -1,17 +1,34 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import "./itemCardPage.scss"
 import {useParams} from "react-router-dom";
-import {carApi} from "../../store/services/ApiServices";
+import {carApi, shopApi} from "../../store/services/ApiServices";
 import {imgUrl} from "../../http/urls";
 import powerCharacteristics from "../../static/photos/powercharacteristics.svg"
 import BackButton from "../../components/button/backButton";
 import LoadingPage from "../../components/Loading/LoadingPage";
+import basket from "../../static/photos/basket.svg"
+import compare from "../../static/photos/compare.svg"
 
 const ItemCardPage = () => {
 
     const {id} = useParams()
 
     const {data: car, isLoading: isLoadingCar} = carApi.useFetchCarQuery(id!)
+    const {data: basketIds} = shopApi.useFetchBasketIdsQuery('')
+    const {data: compareIds} = shopApi.useFetchCompareIdsQuery('')
+    const basketArray = basketIds?.rows.map(ent => ent.carId)
+    const compareArray = compareIds?.compareId.map(ent => ent.carId)
+
+    const [addCompare] = shopApi.useAddToCompareMutation()
+    const [addBasket] = shopApi.useAddToBasketMutation()
+
+    const addToCompare = async (id: number) => {
+        await addCompare(id)
+    }
+
+    const addToBasket = async (id: number) => {
+        await addBasket(id)
+    }
 
     return (
         <div className="commonContainer">
@@ -61,9 +78,30 @@ const ItemCardPage = () => {
                                         price: <span className="bold">{car.price.toLocaleString()}$</span>
                                     </div>
                                     <div className="itemCardPage__characteristics__buttons">
-                                        <div className="itemCardPage__characteristics__button1">Add to basket
+                                        <div className="itemCardPage__characteristics__button1" onClick={() => {
+                                            addToBasket(Number(id))
+                                        }}>
+                                            {
+                                                basketArray?.includes(Number(id)) ?
+                                                    <>Remove <img style={{width: 20, marginLeft: 10}} src={basket}
+                                                                  alt=""/></>
+                                                    :
+                                                    <>Add <img style={{width: 20, marginLeft: 10}} src={basket}
+                                                               alt=""/></>
+                                            }
                                         </div>
-                                        <div className="itemCardPage__characteristics__button2">Add to compare</div>
+                                        <div className="itemCardPage__characteristics__button2" onClick={() => {
+                                            addToCompare(Number(id))
+                                        }}>
+                                            {
+                                                compareArray?.includes(Number(id)) ?
+                                                    <>Remove <img style={{width: 20, marginLeft: 10}} src={compare}
+                                                                  alt=""/></>
+                                                    :
+                                                    <>Add <img style={{width: 20, marginLeft: 10}} src={compare}
+                                                               alt=""/></>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -79,13 +117,16 @@ const ItemCardPage = () => {
                             <div className="itemCardPage__threePhoto__shell__second"></div>
                         </div>
                         <div className="itemCardPagee__posFirst">
-                            <img src={imgUrl + car.car_images[0].img} alt="" className="itemCardPage__threePhoto__first"/>
+                            <img src={imgUrl + car.car_images[0].img} alt=""
+                                 className="itemCardPage__threePhoto__first"/>
                         </div>
                         <div className="itemCardPagee__posSecond">
-                            <img src={imgUrl + car.car_images[1].img} alt="" className="itemCardPage__threePhoto__second"/>
+                            <img src={imgUrl + car.car_images[1].img} alt=""
+                                 className="itemCardPage__threePhoto__second"/>
                         </div>
                         <div className="itemCardPagee__posThird">
-                            <img src={imgUrl + car.car_images[2].img} alt="" className="itemCardPage__threePhoto__third"/>
+                            <img src={imgUrl + car.car_images[2].img} alt=""
+                                 className="itemCardPage__threePhoto__third"/>
                         </div>
 
                         <div className="itemCardPage__threePhoto__shell2">

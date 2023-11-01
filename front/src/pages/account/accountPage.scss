@@ -91,16 +91,15 @@
   position: absolute;
   right: 10px;
   top: 10px;
-  background: white;
   border-radius: 50px;
   padding: 5px;
   cursor: pointer;
   transition: .3s ease all;
+  width: 26px;
 }
 
 .accountPage__crossBack:hover {
-  background: lightgray;
-  transform: scale(1.05)
+  background: gray;
 }
 
 .accountPage__resetPassword__input {

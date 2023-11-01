@@ -3,14 +3,17 @@ import {Car} from "../../../models/DataBaseModels";
 import "./itemCard.scss"
 import {Link} from "react-router-dom";
 import compare from "../../../static/photos/compare.svg"
+import comparechosen from "../../../static/photos/comparechosen.svg";
 import {imgUrl} from "../../../http/urls";
 
 interface IItemCard {
     car: Car
     addToCompare: (id: number) => void
+    compareArray: number[] | undefined
 }
 
-const ItemCard = ({car, addToCompare}: IItemCard) => {
+const ItemCard = ({car, addToCompare, compareArray}: IItemCard) => {
+
 
     return (
         <div className="itemCard__container">
@@ -39,7 +42,13 @@ const ItemCard = ({car, addToCompare}: IItemCard) => {
                 </div>
             </div>
             <Link to={"/car/" + car.id} className="itemCard__link">Check</Link>
-            <img onClick={() => addToCompare(car.id)} className="itemCard__compare" src={compare} alt=""/>
+
+            <img onClick={() => addToCompare(car.id)}
+                 className="itemCard__compare"
+                 src={compareArray?.includes(car.id) ? comparechosen : compare}
+                 alt=""/>
+
+
         </div>
     );
 };

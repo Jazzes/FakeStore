@@ -1,14 +1,14 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {
-    baseUrl, BasketURLPref,
+    baseUrl, BasketIdsURLPref, BasketURLPref,
     brandURLPref,
-    carURLPref, CompareURLPref,
+    carURLPref, CompareIdsURLPref, CompareURLPref,
     engineURLPref
 } from "../../http/urls";
 import {
-    BasketCarsId,
+    BasketCarsId, BasketCarsItems,
     CompareBasketDetails,
-    CompareCarsId,
+    CompareCarsId, CompareCarsItems,
     ICarResponse,
     ICarsResponse
 } from "../../models/storeModels";
@@ -51,14 +51,23 @@ export const shopApi = createApi({
     }),
     tagTypes: ['Compare', 'Basket'],
     endpoints: (build) => ({
-        fetchCompareItems: build.query<CompareCarsId, string>({
+        fetchCompareItems: build.query<CompareCarsItems, string>({
             query: () => ({
                 url: `${CompareURLPref}`,
                 headers: {
                     'Authorization': `Bearer ${getCookie('token')}`
                 }
             }),
-            providesTags: result => ['Compare']
+            providesTags: () => ['Compare']
+        }),
+        fetchCompareIds: build.query<CompareCarsId, string>({
+            query: () => ({
+                url: `${CompareIdsURLPref}`,
+                headers: {
+                    'Authorization': `Bearer ${getCookie('token')}`
+                }
+            }),
+            providesTags: () => ['Compare']
         }),
         addToCompare: build.mutation<CompareBasketDetails, number>({
             query: (id) => ({
@@ -72,14 +81,23 @@ export const shopApi = createApi({
             invalidatesTags: ['Compare']
         }),
 
-        fetchBasketItems: build.query<BasketCarsId, string>({
+        fetchBasketItems: build.query<BasketCarsItems, string>({
             query: () => ({
                 url: `${BasketURLPref}`,
                 headers: {
                     'Authorization': `Bearer ${getCookie('token')}`
                 }
             }),
-            providesTags: result => ['Basket']
+            providesTags: () => ['Basket']
+        }),
+        fetchBasketIds: build.query<BasketCarsId, string>({
+            query: () => ({
+                url: `${BasketIdsURLPref}`,
+                headers: {
+                    'Authorization': `Bearer ${getCookie('token')}`
+                }
+            }),
+            providesTags: () => ['Basket']
         }),
         addToBasket: build.mutation<CompareBasketDetails, number>({
             query: (id) => ({

@@ -1,0 +1,141 @@
+@import "../../csscomponents/default";
+
+.basketPage__container{
+  padding: 0 30px;
+  width: 100%;
+}
+
+.basketPage__name{
+  font-size: $fSizeHeader;
+  margin-top: 30px;
+}
+
+.basketPage__card{
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.10);
+  padding: 30px;
+  position: relative;
+  margin-top: 30px;
+}
+
+.basketPage__card__name{
+  color: white;
+}
+
+.basketPage__cross {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border-radius: 50px;
+  padding: 5px;
+  cursor: pointer;
+  transition: .3s ease all;
+  width: 26px;
+  background: rgba(0, 0, 0, 0.50);
+  backdrop-filter: blur(2px);
+}
+
+.basketPage__cross:hover {
+  background: gray;
+}
+
+.basketPage__card__flex{
+  display: flex;
+}
+
+.basketPage__card__img{
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.50);
+}
+
+.basketPage__card__flexBetween{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.basketPage__card__compare{
+  cursor: pointer;
+}
+
+.basketPage__card__flexColumn{
+  margin-left: 30px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: $fSizeText;
+}
+
+.basketPage__pos{
+  display: flex;
+}
+
+.basketPage__formBuy{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.10);
+  padding: 20px;
+  width: 300px;
+  height: 250px;
+  flex-shrink: 0;
+  font-size: $fSizeText;
+  margin-left: 30px;
+}
+
+.basketPage__toOrder{
+  border: 1px solid #FFFFFF;
+  text-align: center;
+  background: black;
+  color: white;
+  border-radius: 50px;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: .3s ease all;
+}
+
+.basketPage__link{
+  width: 40%;
+  display: inline-block;
+}
+
+.basketPage__toOrder:hover{
+  color: black;
+  background: white;
+}
+
+@media screen and (max-width: 900px) {
+  .basketPage__pos{
+    flex-direction: column;
+  }
+
+  .basketPage__formBuy{
+    margin-left: 0;
+    width: 100%;
+    height: auto;
+  }
+  .basketPage__toOrder{
+    margin-top: 20px;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  .basketPage__card{
+    padding: 20px 10px;
+  }
+  .basketPage__card__flexColumn{
+    margin-left: 15px;
+  }
+
+  .basketPage__card__name{
+    max-width: calc(100% - 30px);
+  }
+
+}

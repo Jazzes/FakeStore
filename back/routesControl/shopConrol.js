@@ -1,14 +1,15 @@
-const {Compare, CompareCar, Basket, BasketCar} = require("../models/models");
+const {Compare, CompareCar, Basket, BasketCar, Car, CarInfo} = require("../models/models");
 const {ApiError} = require('../error/apiError')
 
-class ShopControl{
+class ShopControl {
 
-    async getBasketItems(req, res, next){
+    async getBasketItems(req, res, next) {
         try {
             const basketUser = await Basket.findOne({where: {userId: req.user.id}})
             const basketItems = await BasketCar.findAndCountAll({
                 where: {basketId: basketUser.id},
-                attributes: ['carId']
+                include: Car,
+                attributes: ['carId'],
             })
 
             return res.json(basketItems)
@@ -18,7 +19,41 @@ class ShopControl{
         }
     }
 
-    async getCompareItems(req, res, next){
+    async getCompareItems(req, res, next) {
+        try {
+            const compareUser = await Compare.findOne({where: {userId: req.user.id}})
+            const compareItems = await CompareCar.findAll({
+                where: {compareId: compareUser.id},
+                include: {
+                    model: Car,
+                    include: CarInfo
+                },
+                attributes: ['carId'],
+            })
+
+            return res.json({compareItems: compareItems})
+
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async getBasketIds(req, res, next) {
+        try {
+            const basketUser = await Basket.findOne({where: {userId: req.user.id}})
+            const basketItems = await BasketCar.findAndCountAll({
+                where: {basketId: basketUser.id},
+                attributes: ['carId'],
+            })
+
+            return res.json(basketItems)
+
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async getCompareIds(req, res, next) {
         try {
             const compareUser = await Compare.findOne({where: {userId: req.user.id}})
             const compareItems = await CompareCar.findAll({
@@ -33,7 +68,7 @@ class ShopControl{
         }
     }
 
-    async addOrDeleteBasketCar(req, res, next){
+    async addOrDeleteBasketCar(req, res, next) {
         try {
             const {id} = req.body
 
@@ -41,7 +76,7 @@ class ShopControl{
 
             const check = await BasketCar.findOne({where: {carId: id, basketId: basketUser.id}})
 
-            if (check){
+            if (check) {
                 await check.destroy()
                 return res.json({success: true, status: "deleted"})
             }
@@ -55,7 +90,7 @@ class ShopControl{
         }
     }
 
-    async addOrDeleteCompareCar(req, res, next){
+    async addOrDeleteCompareCar(req, res, next) {
         try {
             const {id} = req.body
 
@@ -63,7 +98,7 @@ class ShopControl{
 
             const check = await CompareCar.findOne({where: {carId: id, compareId: compareUser.id}})
 
-            if (check){
+            if (check) {
                 await check.destroy()
                 return res.json({success: true, status: "deleted"})
             }

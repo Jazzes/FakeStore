@@ -1,0 +1,84 @@
+@import "../../csscomponents/default";
+
+.comparePage__container{
+  padding: 0 30px;
+  width: 100%;
+}
+
+.comparePage__pos{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.comparePage__name{
+  font-size: $fSizeHeader;
+  margin-top: 30px;
+}
+
+.comparePage__NoCars{
+  font-size: $fSizeHeader;
+  margin-top: 30px;
+}
+
+.comparePage__card__img{
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.50);
+}
+.comparePage__card__name{
+  color: white;
+  width: 100%;
+  text-align: center;
+}
+
+.comparePage__card__info{
+  margin-top: 30px;
+}
+
+.comparePage__card__item{
+  width: 100%;
+  text-align: center;
+  margin-top: 5px;
+}
+
+
+.comparePage__cross {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border-radius: 50px;
+  padding: 5px;
+  cursor: pointer;
+  transition: .3s ease all;
+  width: 26px;
+  background: rgba(0, 0, 0, 0.50);
+  backdrop-filter: blur(2px);
+}
+
+.comparePage__cross:hover {
+  background: gray;
+}
+
+.comparePage__card{
+  position: relative;
+  font-size: $fSizeText;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 30px;
+  padding: 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.10);
+  width: 32%;
+}
+
+@media screen and (max-width: 900px) {
+  .comparePage__card{
+    width: 48%;
+  }
+  .comparePage__card__info{
+    margin-top: 15px;
+  }
+}
