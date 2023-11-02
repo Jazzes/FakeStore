@@ -1,0 +1,87 @@
+@import "../../csscomponents/default";
+
+.orderPage__block{
+  border-radius: 30px;
+  background: rgba(217, 217, 217, 0.10);
+  margin-top: 80px;
+  width: 100%;
+  padding: 30px;
+}
+
+.orderPage__container{
+  padding: 0 10%;
+  width: 100%;
+}
+
+.orderPage__margintop{
+  margin-top: 30px;
+}
+
+.orderPage__form{
+  font-size: $fSizeInscription;
+}
+
+.orderPage__form__details{
+  margin-top: 30px;
+}
+
+.orderPage__form__header{
+  font-size: $fSizeText;
+}
+
+.orderPage__form__littleblock{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.orderPage__form__input{
+  margin-top: 5px;
+  width: 100%;
+  border: 0;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.10);
+  outline: none;
+  color: white;
+  padding: 8px 12px;
+  font-size: $fSizeText;
+  appearance: none;
+}
+
+.orderPage__form__block__car{
+  width: 100%;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.10);
+  padding: 8px 12px;
+  margin-top: 5px;
+}
+
+.orderPage__agree{
+  text-align: center;
+  font-size: $fSizeInscription;
+  margin-top: 15px;
+}
+
+.orderPage__submit{
+  border-radius: 30px;
+  border: 1px solid white;
+  color: white;
+  background: #000;
+  font-size: $fSizeText;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+  padding: 8px 12px;
+  margin-top: 15px;
+  transition: .3s ease all;
+}
+
+.orderPage__validateError{
+  color: #E83B46;
+  font-size: $fSizeInscription;
+}
+
+.orderPage__submit:hover{
+  color: black;
+  background: white;
+}
