@@ -27,7 +27,7 @@ const SortPopUp : FC<ISortPopUp> = ({addSearchParam, searchParams, deleteSearchP
     }, [sortId]);
 
     return (
-        <div className="popUp__container" onClick={(e) => {
+        <div className="popUp__container popUp__pos" onClick={(e) => {
             e.stopPropagation()
         }}>
             {wayOfSorts.map(ent =>

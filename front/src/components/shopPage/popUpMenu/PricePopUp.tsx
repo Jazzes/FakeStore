@@ -44,7 +44,7 @@ const PricePopUp : FC<IPricePopUp> = ({addSearchParam, searchParams, deleteSearc
     }, [maxPrice]);
 
     return (
-        <div className="popUp__container" onClick={(e) => {
+        <div className="popUp__container popUp__pos__price" onClick={(e) => {
             e.stopPropagation()
         }}>
             <div className="popUp__price__cont" style={{marginTop: 15}}>

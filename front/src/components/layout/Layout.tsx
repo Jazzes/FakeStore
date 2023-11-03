@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import "./layout.scss"
 import {Link, Outlet} from 'react-router-dom';
 import logo from "../../static/photos/logo.svg";
-import find from "../../static/photos/find.svg";
 import Navbar from "../navbar/navbar";
 import BasketButton from "../button/BasketButton";
 
@@ -42,9 +41,6 @@ const Layout = () => {
                         <img className="logoSize" alt="" src={logo}/>
                     </Link>
                     <div className="nav__right_side">
-                        <div className="findLogo">
-                            <img className="findLogoSize" alt="" src={find}/>
-                        </div>
                         <BasketButton/>
                         <div className={burgerActive} onClick={() => {
                             setActive(active => !active)
